@@ -1,0 +1,7 @@
+[buttons]
+lock = "Lock"
+hibernate = "Hibernate"
+logout = "Logout"
+shutdown = "Shutdown"
+reboot = "Reboot"
+suspend = "Suspend"
