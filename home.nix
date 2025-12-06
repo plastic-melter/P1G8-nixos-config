@@ -720,6 +720,7 @@ xdg.desktopEntries = {
 home.sessionVariables = {
   TERMINAL = "wezterm";
   TERM_PROGRAM = "wezterm";
+  GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0"; #AGS
 };
 
 systemd.user.sessionVariables = {
