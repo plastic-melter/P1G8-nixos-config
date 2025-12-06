@@ -214,7 +214,7 @@ console = {
 };
 
 fonts = {
-  packages = [ pkgs.carlito pkgs.dejavu_fonts pkgs.ipafont pkgs.kochi-substitute pkgs.liberation_ttf pkgs.nerd-fonts.symbols-only pkgs.noto-fonts-cjk-sans pkgs.source-code-pro pkgs.ttf_bitstream_vera ];
+  packages = with pkgs; [ carlito dejavu_fonts ipafont kochi-substitute liberation_ttf nerd-fonts.symbols-only noto-fonts-cjk-sans source-code-pro ttf_bitstream_vera xorg.fontmiscmisc xorg.fontcursormisc ];
   fontconfig.defaultFonts = {
     monospace = [
       "DejaVu Sans Mono"
