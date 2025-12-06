@@ -199,6 +199,7 @@ networking = {
       address = "169.254.1.1";   # or "192.168.1.100"
       prefixLength = 16;         # or 24 for 192.168.x.x
     }];
+    useDHPC = false;
   };
 }; 
 
