@@ -96,7 +96,8 @@ programs = {
 };
 
 boot = {
-  kernelPackages = pkgs.linuxPackages_latest;
+#  kernelPackages = pkgs.linuxPackages_latest;
+  kernelPackages = pkgs.linuxPackages_6_6; # latest -> nvidia 580.105.08 build fail as of Dec 5th
   loader.grub = {
     enable = true;
     device = "nodev";
@@ -367,7 +368,7 @@ hardware = {
     open = true;
     nvidiaSettings = true;
     powerManagement.enable = false;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
     #prime = {
     #  sync.enable = false;
     #  offload.enable = false;

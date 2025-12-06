@@ -36,7 +36,7 @@ config = {
       hsb = {
         hue = 1.0,
        saturation = 1.0,
-        brightness = 0.08,
+        brightness = 0.04,
       },
     },
     {
