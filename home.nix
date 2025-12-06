@@ -162,6 +162,12 @@ dconf.settings = {
 
 services.playerctld.enable = true;
 
+services.syncthing = {
+  enable = true;
+  user = "youruser";
+  dataDir = "/home/youruser";
+};
+
 services.dunst = {
   enable = true;
   settings = {
@@ -795,6 +801,7 @@ home.packages = with pkgs; [ # user-only apps
   kdePackages.kcolorchooser # hex color tool GUI
   kdePackages.kdenlive # GUI video editor
   libreoffice-fresh # office app suite
+  obsidian # cross-platform notes program
   platformio # arduino TUI + utils
   prusa-slicer # 3DP slicer
   qbittorrent # peer-to-peer file sharing
