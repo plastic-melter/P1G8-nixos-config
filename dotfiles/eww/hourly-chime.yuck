@@ -1,0 +1,26 @@
+(defwindow hourly-chime
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "350px"
+                      :height "250px"
+                      :anchor "center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  (box :class "chime-box"
+       :orientation "v"
+       :space-evenly false
+    (image :path chime_image
+           :image-width 150
+           :image-height 150)
+    (label :class "time-text"
+           :halign "center"
+           :text chime_time)
+    (label :class "date-text"
+           :halign "center"
+           :text chime_date)))
+
+(defvar chime_image "/etc/nixos/dotfiles/images/clock.jpg")
+(defvar chime_time "12:00 PM")
+(defvar chime_date "Monday, December 06")

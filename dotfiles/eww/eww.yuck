@@ -1,0 +1,29 @@
+(include "./stats.yuck")
+(include "./hourly-chime.yuck")
+
+(defwindow greeting
+  :monitor 0
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "500px"
+                      :height "300px"
+                      :anchor "center")
+  :stacking "overlay"
+  :exclusive false
+  :focusable false
+  (box :class "greeting-box"
+       :orientation "v"
+       :space-evenly false
+    (image :path greeting_image
+           :image-width 200
+           :image-height 200)
+    (label :class "greeting-text"
+           :halign "center"
+           :text greeting_text)
+    (label :class "date-text"
+           :halign "center"
+           :text date_text)))
+
+(defvar greeting_image "/etc/nixos/dotfiles/images/greetings/evening.jpg")
+(defvar greeting_text "Good evening")
+(defvar date_text "Friday, December 06, 2025")

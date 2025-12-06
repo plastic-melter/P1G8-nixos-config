@@ -1,0 +1,43 @@
+* {
+  all: unset;
+}
+
+.chime-box {
+  background-color: rgba(24, 27, 40, 0.95);
+  border: 4px solid #5E81AC;
+  border-radius: 15px;
+  padding: 15px 10px;
+}
+
+.time-text {
+  font-family: "NotoSansCJK";
+  font-size: 32px;
+  color: #ffffd8;
+  margin-top: 10px;
+}
+
+.greeting-box {
+  background-color: rgba(24, 27, 40, 0.95);
+  border: 4px solid #5E81AC;
+  border-radius: 15px;
+  padding: 10px 10px;
+  transition: opacity 1s ease-out;
+}
+
+.greeting-text {
+  font-family: "NotoSansCJK";
+  font-size: 32px;
+  color: #ffffd8;
+  margin-top: 10px;
+}
+
+.greeting-box.fade-out {
+  opacity: 0;
+}
+
+.date-text {
+  font-family: "NotoSansCJK";
+  font-size: 18px;
+  color: #ffffd8;
+  margin-top: 5px;
+}

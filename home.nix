@@ -17,7 +17,15 @@ imports = [
 ];
 
 home.file = {
+  ".config/ags" = {
+    source = ./dotfiles/ags;
+    recursive = true;
+  };
   ".config/hypr".source = ./dotfiles/hypr;
+  ".config/eww" = {
+    source = ./dotfiles/eww;
+    recursive = true;
+  };
   ".config/wlogout".source = ./dotfiles/wlogout;
   ".config/plutonium".source = ./dotfiles/plutonium;
   ".config/scripts".source = ./dotfiles/scripts;
@@ -152,14 +160,10 @@ dconf.settings = {
   };
 };
 
+services.playerctld.enable = true;
+
 services.dunst = {
   enable = true;
-  package = pkgs.dunst;
-  #iconTheme.package = 
-  #iconTheme = 
-  #iconTheme.name =
-  #iconTheme.size =
-  #waylandDisplay = 
   settings = {
     global = {
       timeout = 2;
@@ -194,14 +198,10 @@ services.dunst = {
       font = "NotoSansCJK 18";
       min_icon_size = 128;
       max_icon_size = 128;
-      layerrule = "blur, notifications";
-      #layerrule = "ignorealpha 0.8, notifications";
       background = "#090909B5";
     };
   };
 };
-
-services.playerctld.enable = true;
 
 xdg.userDirs = {
   enable = false;
@@ -219,6 +219,10 @@ style=Kvantum
 icon_theme=breeze
   '';
 };
+
+xdg.configFile."xfce4/helpers.rc".text = ''
+  TerminalEmulator=wezterm
+'';
 
 xdg.configFile."qt6ct/qt6ct.conf" = {
   force = true;
@@ -713,6 +717,11 @@ xdg.desktopEntries = {
   };
 };
 
+home.sessionVariables = {
+  TERMINAL = "wezterm";
+  TERM_PROGRAM = "wezterm";
+};
+
 systemd.user.sessionVariables = {
   GTK_THEME = "Arc-Dark";
   XDG_ICON_FALLBACK = "/etc/nixos/dotfiles/images/blankicon.png";
@@ -744,12 +753,26 @@ systemd.user.services.udiskie = {
   };
 };
 
+systemd.user.services.hourly-chime = {
+  Unit.Description = "Hourly time notification";
+  Service = {
+    Type = "oneshot";
+    ExecStart = "/etc/nixos/dotfiles/scripts/hourly-chime.sh";
+  };
+};
+
+systemd.user.timers.hourly-chime = {
+  Unit.Description = "Hourly chime timer";
+  Timer = {
+    OnCalendar = "hourly";
+    Persistent = true;
+  };
+  Install.WantedBy = [ "timers.target" ];
+};
+
 programs = { 
   foot.enable = true;
   obs-studio = {
-    enable = true;
-  };
-  eww = {
     enable = true;
   };
   direnv = {
@@ -784,10 +807,12 @@ home.packages = with pkgs; [ # user-only apps
   zoom-us # video chat software
 
   # UTILITIES
+  ags # widgets and things
   bluetooth_battery # fetch info form BT devices
   cdrdao # burn CDs
   cdrkit # burn CDs
   cliphist # wayland clipboard history manager
+  eww # widgets and stuff
   fastfetch # quickly fetch general system info
   ffmpeg # video re-encoding CLI
   ffmpegthumbnailer # ranger image previews
@@ -814,7 +839,6 @@ home.packages = with pkgs; [ # user-only apps
   nwg-clipman # clipboard manager for wayland
   nwg-dock-hyprland # dock for hyprland
   nwg-drawer # app launcher
-  nwg-hello # greeter dialogue
   nwg-icon-picker # icon selection tool
   nwg-launchers # lightweight program launchers
   nwg-look # GUI theme/config tool
