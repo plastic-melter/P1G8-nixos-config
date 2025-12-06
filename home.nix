@@ -808,6 +808,12 @@ home.packages = with pkgs; [ # user-only apps
 
   # UTILITIES
   ags # widgets and things
+  astal.astal3       # GTK3 support
+  astal.hyprland     # Hyprland
+  astal.mpris        # Media player
+  astal.battery      # Battery
+  astal.wireplumber  # Audio (Wp)
+  astal.network      # Network
   bluetooth_battery # fetch info form BT devices
   cdrdao # burn CDs
   cdrkit # burn CDs
@@ -827,7 +833,6 @@ home.packages = with pkgs; [ # user-only apps
   zsh-powerlevel10k # fancy ZSH PS1
 
   # WAYLAND, HYPRLAND, RICE
-  astal # collection od daemons and libs for widgets
   catppuccin-kvantum # qt theme, apply with kvantum
   hyprdim # dims inactive windows
   hypridle # auto idle screen lock, suspend, etc
@@ -837,7 +842,6 @@ home.packages = with pkgs; [ # user-only apps
   hyprpaper # wallpaper util
   hyprpicker # color picker tool
   hyprshot # screenshot util
-  libdbusmenu-gtk3 # used in ags config
   nwg-clipman # clipboard manager for wayland
   nwg-dock-hyprland # dock for hyprland
   nwg-drawer # app launcher
