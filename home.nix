@@ -164,8 +164,8 @@ services.playerctld.enable = true;
 
 services.syncthing = {
   enable = true;
-  user = "youruser";
-  dataDir = "/home/youruser";
+  user = "joe";
+  dataDir = "/home/joe/Documents";
 };
 
 services.dunst = {
