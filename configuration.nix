@@ -193,6 +193,12 @@ networking = {
   networkmanager.enable = true;
   useDHCP = false;
   interfaces.wlp0s20f3.useDHCP = true;
+  interfaces.enp177s0u1c2 = {    # electric eel adapter 2025-12-04
+    ipv4.addresses = [{
+      address = "169.254.1.1";   # or "192.168.1.100"
+      prefixLength = 16;         # or 24 for 192.168.x.x
+    }];
+  };
 }; 
 
 time.timeZone = "America/Los_Angeles";
@@ -458,6 +464,7 @@ environment.systemPackages = with pkgs; [ # system-level apps
   git # distributed version control system
   htop # view resource usage
   id3v2 # view/edit mp3 metadata
+  inetutils # network tools such as telnet
   iotop # view disk usage/processes
   killall # allows for killing processes by name
   moreutils # useful UNIX tools: ts, sponge, vidir, etc.

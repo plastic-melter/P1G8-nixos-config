@@ -28,26 +28,27 @@ config = {
       '#1d1e2e',
     };
   };
---  background = {
---    {
---      source = {
---         File = "/etc/nixos/wallpapers/sparkle.gif",
---      },
---      hsb = {
---        hue = 1.0,
---       saturation = 1.0,
---        brightness = 0.05,
---      },
---    },
---    {
---      source = {
---        Color = "#2e3440",
---      },
---      width = "100%",
---      height = "100%",
---      opacity = 0.25,
---    },
---  },
+  background = {
+    {
+      source = {
+         File = "/home/joe/Downloads/utau.jpg",
+      },
+      hsb = {
+        hue = 1.0,
+       saturation = 1.0,
+        brightness = 0.08,
+      },
+    },
+    {
+      source = {
+        --Color = "#2e3440",
+        Color = "131728",
+      },
+      width = "100%",
+      height = "100%",
+      opacity = 0.9,
+    },
+  },
 }
 
 return config
