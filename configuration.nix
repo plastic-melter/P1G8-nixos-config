@@ -268,6 +268,8 @@ nixpkgs.config.qt5 = {
 
 services.syncthing = {
   enable = true;
+  user = "joe";
+  group = "users";
 };
 
 services = {
