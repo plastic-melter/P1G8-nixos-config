@@ -1,4 +1,8 @@
 #!/bin/sh
+CYAN='\033[1;36m'
+PURPLE='\033[1;35m'
+NC='\033[0m'
+
 echo -e "${CYAN}Staging all /etc/nixos changes...${NC}"
 git -C /etc/nixos add -A
 
