@@ -6,7 +6,7 @@ RED='\033[1;31m'
 NC='\033[0m'
 
 echo -e "${CYAN}Rebuilding NixOS system...${NC}"
-if doas nixos-rebuild switch --flake /etc/nixos; then
+if doas nixos-rebuild switch --flake /etc/nixos 2>&1 | grep -v "warning: Git tree.*is dirty"; then
     echo -e "${GREEN}Rebuild succeeded${NC}"
     
     echo -e "${CYAN}Staging all /etc/nixos changes...${NC}"
