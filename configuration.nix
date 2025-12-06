@@ -90,6 +90,10 @@ programs = {
         hi Normal guibg=NONE ctermbg=NONE
         hi NormalFloat guibg=NONE ctermbg=NONE
         hi SignColumn guibg=NONE ctermbg=NONE
+        " make cursor easy to see
+        set guicursor=n-v-c:block-green,i-ci:ver25-green,r-cr:hor20-green
+        highlight Cursor guifg=black guibg=#00ff00
+        highlight iCursor guifg=black guibg=#00ff00
       '';
     };
   };
@@ -199,7 +203,7 @@ networking = {
       address = "169.254.1.1";   # or "192.168.1.100"
       prefixLength = 16;         # or 24 for 192.168.x.x
     }];
-    useDHPC = false;
+    useDHCP = false;
   };
 }; 
 
