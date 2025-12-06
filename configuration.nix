@@ -270,6 +270,7 @@ services.syncthing = {
   enable = true;
   user = "joe";
   group = "users";
+  dataDir = "/home/joe/.local/share/syncthing";
 };
 
 services = {
