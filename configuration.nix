@@ -59,41 +59,40 @@ programs = {
     vimAlias = true;
     configure = { 
       customRC = '' 
-        set clipboard^=unnamed,unnamedplus   " clipboard
-        set number                           " line nums
-        set nocompatible                     " disable vi compat
-        set ignorecase                       " case insensitive search
-        set mouse=v                          " middle-click paste
-        set hlsearch                         " highlight search
-        set incsearch                        " incremental search
-        set tabstop=2                        " tab length
-        set softtabstop=2                    " see spaces as tabs
-        set expandtab                        " convert tabs to spaces
-        set autoindent                       " auto indent
-        set wildmode=longest,list            " tab completion
-        filetype plugin indent on            " auto indent
-        syntax on                            " syntax HLing
-        set mouse=a                          " enable mouse click
-        filetype plugin on                   " uhh I forget
-        set cursorline                       " HL current cursorline
-        set ttyfast                          " fast scrolling
-        set cursorline                       " tab HLs
-        "set cursorcolumn                    " tab HLs
-        set list                             " tab HLs
-        set listchars=tab:\|\                " tab HLs
-        set foldmethod=marker                " idk
-        set smartcase                        " searches are case-insensitive
-        nnoremap <C-@> :call system("wl-copy", @")<CR>
-        "colorscheme sorbet
-        " --- Transparent background ---
-        set termguicolors
-        hi Normal guibg=NONE ctermbg=NONE
-        hi NormalFloat guibg=NONE ctermbg=NONE
-        hi SignColumn guibg=NONE ctermbg=NONE
-        " make cursor easy to see
-        set guicursor=n-v-c:block-green,i-ci:ver25-green,r-cr:hor20-green
-        highlight Cursor guifg=black guibg=#00ff00
-        highlight iCursor guifg=black guibg=#00ff00
+      set clipboard^=unnamed,unnamedplus   " use system clipboard
+      set number                           " show line numbers
+      set nocompatible                     " disable vi compatibility mode
+      set ignorecase                       " case insensitive search
+      set smartcase                        " override ignorecase if search has uppercase
+      set hlsearch                         " highlight search matches
+      set incsearch                        " show search matches as you type
+      set tabstop=2                        " tab width = 2 spaces
+      set softtabstop=2                    " treat 2 spaces as a tab when editing
+      set expandtab                        " insert spaces instead of tabs
+      set autoindent                       " auto-indent new lines
+      set wildmode=longest,list            " bash-like tab completion
+      set mouse=a                          " enable mouse support
+      set cursorline                       " highlight current line
+      set ttyfast                          " faster scrolling
+      set list                             " show invisible characters
+      set listchars=tab:\|\                " display tabs as |
+      set foldmethod=marker                " fold based on markers {{{ }}}
+      filetype plugin indent on            " enable filetype detection and auto-indent
+      syntax on                            " enable syntax highlighting
+      
+      " copy to wayland clipboard with Ctrl-Space
+      nnoremap <C-@> :call system("wl-copy", @")<CR>
+      
+      " transparent background
+      set termguicolors
+      hi Normal guibg=NONE ctermbg=NONE
+      hi NormalFloat guibg=NONE ctermbg=NONE
+      hi SignColumn guibg=NONE ctermbg=NONE
+      
+      " bright red-pink cursor
+      set guicursor=n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor
+      highlight Cursor guifg=black guibg=#ff0066
+      highlight iCursor guifg=black guibg=#ff0066
       '';
     };
   };
