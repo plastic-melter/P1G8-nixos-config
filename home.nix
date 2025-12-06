@@ -855,6 +855,7 @@ home.packages = with pkgs; [ # user-only apps
   lutris # game manager like steam
   mame # arcade emulator
   protontricks # allows for Steam proton prefixes
+  snake4 # terminal game to pass short periods of time
   wineWowPackages.waylandFull # wine for wayland
   winetricks # install DLLs/etc into wine prefixes
 
