@@ -849,6 +849,8 @@ home.packages = with pkgs; [ # user-only apps
   wlogout # wayang logout menu
   wlr-randr # like xrandr but for wayland
   wl-clipboard # enable copy-paste in wayland
+  xorg.fontmiscmisc # for snake4
+  xorg.fontcursormisc # for snake4
 
   # GAMING
   dolphin-emu # GameCube/Wii emulator
