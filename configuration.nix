@@ -101,7 +101,6 @@ programs = {
 
 boot = {
   kernelPackages = pkgs.linuxPackages_latest;
-  #kernelPackages = pkgs.linuxPackages_6_6; # latest -> nvidia 580.105.08 build fail as of Dec 5th
   loader.grub = {
     enable = true;
     device = "nodev";
@@ -376,7 +375,7 @@ powerManagement = {
 hardware = {
   nvidia = {
     modesetting.enable = true;
-    open = false;
+    open = true; # req'd for Blackwell
     nvidiaSettings = true;
     powerManagement.enable = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
