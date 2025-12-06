@@ -807,13 +807,6 @@ home.packages = with pkgs; [ # user-only apps
   zoom-us # video chat software
 
   # UTILITIES
-  ags # widgets and things
-  astal.astal3       # GTK3 support
-  astal.hyprland     # Hyprland
-  astal.mpris        # Media player
-  astal.battery      # Battery
-  astal.wireplumber  # Audio (Wp)
-  astal.network      # Network
   bluetooth_battery # fetch info form BT devices
   cdrdao # burn CDs
   cdrkit # burn CDs

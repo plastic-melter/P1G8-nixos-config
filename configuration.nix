@@ -492,6 +492,15 @@ environment.systemPackages = with pkgs; [ # system-level apps
 # LOGIN STUFF FOR USERS
   catppuccin-sddm # nice sddm themes
 
+# AGS stuff
+  ags
+  astal.astal3
+  astal.hyprland
+  astal.mpris
+  astal.battery
+  astal.wireplumber
+  astal.network
+
 # PACKAGE OVERRIDES
   (catppuccin-sddm.override {
     flavor = "macchiato";
