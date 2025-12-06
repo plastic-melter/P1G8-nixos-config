@@ -267,6 +267,10 @@ nixpkgs.config.qt5 = {
   };
 };
 
+services.syncthing = {
+  enable = true;
+};
+
 services = {
   udisks2.enable = true;
   xserver = {

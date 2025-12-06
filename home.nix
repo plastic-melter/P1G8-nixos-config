@@ -162,11 +162,6 @@ dconf.settings = {
 
 services.playerctld.enable = true;
 
-services.syncthing = {
-  enable = true;
-  user = "joe";
-};
-
 services.dunst = {
   enable = true;
   settings = {
