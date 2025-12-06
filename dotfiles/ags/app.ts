@@ -11,24 +11,24 @@ const time = Variable("").poll(1000, () =>
   GLib.DateTime.new_now_local().format("%H:%M:%S") || ""
 )
 
-const date = Variable("10s", () =>
+const date = Variable("").poll(10000, () =>
   GLib.DateTime.new_now_local().format("%A, %B %d") || ""
 )
 
 // Time widget
 function TimeWidget() {
   const box = new Astal.Box({
-    className: "section time-section",
+    css_classes: ["section", "time-section"],
     vertical: true,
   })
   
   const timeLabel = new Astal.Label({
-    className: "time-big",
+    css_classes: ["time-big"],
     label: bind(time),
   })
   
   const dateLabel = new Astal.Label({
-    className: "date-small",
+    css_classes: ["date-small"],
     label: bind(date),
   })
   
@@ -41,13 +41,15 @@ function TimeWidget() {
 // Launcher
 function Launcher() {
   const box = new Astal.Box({
-    className: "section launcher-section",
+    css_classes: ["section", "launcher-section"],
     halign: Gtk.Align.CENTER,
   })
   
   const button = new Astal.Button({
-    className: "launcher-btn",
-    onClicked: () => App.get_default().quit(),
+    css_classes: ["launcher-btn"],
+    onClicked: () => {
+      GLib.spawn_command_line_async("nwg-menu -va top")
+    },
   })
   
   const label = new Astal.Label({
@@ -65,16 +67,16 @@ function BatteryWidget() {
   const battery = Battery.get_default()
   
   const box = new Astal.Box({
-    className: "section",
+    css_classes: ["section"],
     vertical: true,
   })
   
   const statRow = new Astal.Box({
-    className: "stat-row",
+    css_classes: ["stat-row"],
   })
   
   const icon = new Astal.Label({
-    className: "icon",
+    css_classes: ["icon"],
     label: "",
   })
   
@@ -86,13 +88,13 @@ function BatteryWidget() {
   const labelRow = new Astal.Box({})
   
   const batteryLabel = new Astal.Label({
-    className: "label",
+    css_classes: ["label"],
     halign: Gtk.Align.START,
     label: "Battery",
   })
   
   const batteryValue = new Astal.Label({
-    className: "value",
+    css_classes: ["value"],
     halign: Gtk.Align.END,
     hexpand: true,
   })
@@ -107,7 +109,7 @@ function BatteryWidget() {
   labelRow.add(batteryValue)
   
   const levelBar = new Astal.LevelBar({
-    className: "progress-bar battery-bar",
+    css_classes: ["progress-bar", "battery-bar"],
   })
   
   battery.connect("notify::percentage", () => {
@@ -135,11 +137,11 @@ function VolumeWidget() {
   }
   
   const box = new Astal.Box({
-    className: "section",
+    css_classes: ["section"],
   })
   
   const icon = new Astal.Label({
-    className: "icon",
+    css_classes: ["icon"],
   })
   
   speaker.connect("notify::mute", () => {
@@ -155,13 +157,13 @@ function VolumeWidget() {
   const labelRow = new Astal.Box({})
   
   const volumeLabel = new Astal.Label({
-    className: "label",
+    css_classes: ["label"],
     halign: Gtk.Align.START,
     label: "Volume",
   })
   
   const volumeValue = new Astal.Label({
-    className: "value",
+    css_classes: ["value"],
     halign: Gtk.Align.END,
     hexpand: true,
   })
@@ -175,7 +177,7 @@ function VolumeWidget() {
   labelRow.add(volumeValue)
   
   const slider = new Astal.Slider({
-    className: "volume-slider",
+    css_classes: ["volume-slider"],
     drawValue: false,
     hexpand: true,
   })
@@ -201,7 +203,7 @@ function VolumeWidget() {
 // Main stats window
 function StatsWindow() {
   const mainBox = new Astal.Box({
-    className: "main-container",
+    css_classes: ["main-container"],
     vertical: true,
     spacing: 10,
   })
@@ -212,7 +214,7 @@ function StatsWindow() {
   mainBox.add(VolumeWidget())
   
   return new Astal.Window({
-    className: "stats-window",
+    css_classes: ["stats-window"],
     name: "stats",
     anchor: Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT,
     exclusivity: Astal.Exclusivity.NORMAL,
