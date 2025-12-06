@@ -792,6 +792,7 @@ home.packages = with pkgs; [ # user-only apps
   discord # electron app for discord
   firefox # the best web browser
   gimp # GNU image manipulation program
+  grayjay # youtube frontend
   kdePackages.kcolorchooser # hex color tool GUI
   kdePackages.kdenlive # GUI video editor
   libreoffice-fresh # office app suite
