@@ -378,7 +378,18 @@ hardware = {
     open = true; # req'd for Blackwell
     nvidiaSettings = true;
     powerManagement.enable = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    #package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.stable // {
+      open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (pkgs.fetchpatch {
+            name = "get_dev_pagemap.patch";
+            url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/3e230516034d29e84ca023fe95e284af5cd5a065.patch";
+            hash = "sha256-BhL4mtuY5W+eLofwhHVnZnVf0msDj7XBxskZi8e6/k8=";
+          })
+        ];
+      });
+    };
     #prime = {
     #  sync.enable = false;
     #  offload.enable = false;
