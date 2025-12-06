@@ -89,10 +89,11 @@ programs = {
       hi NormalFloat guibg=NONE ctermbg=NONE
       hi SignColumn guibg=NONE ctermbg=NONE
       
-      " bright red-pink cursor
+      " easy-to-read colors
       set guicursor=n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor
-      highlight Cursor guifg=black guibg=#ff0066
-      highlight iCursor guifg=black guibg=#ff0066
+      highlight Cursor guifg=black guibg=#aaffff
+      highlight iCursor guifg=black guibg=#aaffff
+      highlight Search guifg=black guibg=#ffb366
       '';
     };
   };
