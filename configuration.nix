@@ -64,7 +64,7 @@ programs = {
         set nocompatible                     " disable vi compat
         set ignorecase                       " case insensitive search
         set mouse=v                          " middle-click paste
-               set hlsearch                         " highlight search
+        set hlsearch                         " highlight search
         set incsearch                        " incremental search
         set tabstop=2                        " tab length
         set softtabstop=2                    " see spaces as tabs
@@ -96,8 +96,8 @@ programs = {
 };
 
 boot = {
-#  kernelPackages = pkgs.linuxPackages_latest;
-  kernelPackages = pkgs.linuxPackages_6_6; # latest -> nvidia 580.105.08 build fail as of Dec 5th
+  kernelPackages = pkgs.linuxPackages_latest;
+  #kernelPackages = pkgs.linuxPackages_6_6; # latest -> nvidia 580.105.08 build fail as of Dec 5th
   loader.grub = {
     enable = true;
     device = "nodev";
@@ -201,6 +201,8 @@ networking = {
     }];
   };
 }; 
+
+systemd.network.wait-online.enable = false;
 
 time.timeZone = "America/Los_Angeles";
 
