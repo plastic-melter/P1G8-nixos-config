@@ -1,206 +1,232 @@
-* {
-  all: unset;
-  font-family: "JetBrainsMono Nerd Font", "NotoSansCJK";
-}
+import { App, Astal, Gtk, Gdk } from "astal/gtk3"
+import { Variable, GLib, bind } from "astal"
+import Hyprland from "gi://AstalHyprland"
+import Mpris from "gi://AstalMpris"
+import Battery from "gi://AstalBattery"
+import Wp from "gi://AstalWp"
+import Network from "gi://AstalNetwork"
 
-.stats-window {
-  background-color: transparent;
-}
+// Time variables
+const time = Variable("").poll(1000, () => 
+  GLib.DateTime.new_now_local().format("%H:%M:%S") || ""
+)
 
-.main-container {
-  background-color: rgba(24, 27, 40, 0.98);
-  border: 2px solid #5E81AC;
-  border-radius: 12px;
-  padding: 20px;
-  min-width: 450px;
-}
+const date = Variable("").poll(10000, () =>
+  GLib.DateTime.new_now_local().format("%A, %B %d") || ""
+)
 
-.section {
-  background-color: rgba(46, 52, 64, 0.6);
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 10px;
-}
-
-// Time section
-.time-section {
-  background: linear-gradient(135deg, rgba(94, 129, 172, 0.3), rgba(136, 192, 208, 0.3));
-  padding: 20px;
-}
-
-.time-big {
-  font-size: 48px;
-  font-weight: bold;
-  color: #ECEFF4;
-}
-
-.date-small {
-  font-size: 16px;
-  color: #D8DEE9;
-  margin-top: 5px;
+// Time widget
+function TimeWidget() {
+  const box = new Astal.Box({
+    className: "section time-section",
+    vertical: true,
+  })
+  
+  const timeLabel = new Astal.Label({
+    className: "time-big",
+    label: bind(time),
+  })
+  
+  const dateLabel = new Astal.Label({
+    className: "date-small",
+    label: bind(date),
+  })
+  
+  box.add(timeLabel)
+  box.add(dateLabel)
+  
+  return box
 }
 
 // Launcher
-.launcher-section {
-  background: linear-gradient(135deg, rgba(94, 129, 172, 0.3), rgba(129, 161, 193, 0.3));
+function Launcher() {
+  const box = new Astal.Box({
+    className: "section launcher-section",
+    halign: Gtk.Align.CENTER,
+  })
+  
+  const button = new Astal.Button({
+    className: "launcher-btn",
+    onClicked: () => {
+      GLib.spawn_command_line_async("nwg-menu -va top")
+    },
+  })
+  
+  const label = new Astal.Label({
+    label: "",
+  })
+  
+  button.child = label
+  box.add(button)
+  
+  return box
 }
 
-.launcher-btn {
-  font-size: 32px;
-  color: #88C0D0;
-  background-color: transparent;
-  padding: 10px 20px;
-  transition: all 200ms ease;
+// Battery widget
+function BatteryWidget() {
+  const battery = Battery.get_default()
+  
+  const box = new Astal.Box({
+    className: "section",
+    vertical: true,
+  })
+  
+  const statRow = new Astal.Box({
+    className: "stat-row",
+  })
+  
+  const icon = new Astal.Label({
+    className: "icon",
+    label: "",
+  })
+  
+  const contentBox = new Astal.Box({
+    vertical: true,
+    hexpand: true,
+  })
+  
+  const labelRow = new Astal.Box({})
+  
+  const batteryLabel = new Astal.Label({
+    className: "label",
+    halign: Gtk.Align.START,
+    label: "Battery",
+  })
+  
+  const batteryValue = new Astal.Label({
+    className: "value",
+    halign: Gtk.Align.END,
+    hexpand: true,
+  })
+  
+  // Bind battery percentage
+  battery.connect("notify::percentage", () => {
+    batteryValue.label = `${Math.floor(battery.percentage * 100)}%`
+  })
+  batteryValue.label = `${Math.floor(battery.percentage * 100)}%`
+  
+  labelRow.add(batteryLabel)
+  labelRow.add(batteryValue)
+  
+  const levelBar = new Astal.LevelBar({
+    className: "progress-bar battery-bar",
+  })
+  
+  battery.connect("notify::percentage", () => {
+    levelBar.value = battery.percentage
+  })
+  levelBar.value = battery.percentage
+  
+  contentBox.add(labelRow)
+  contentBox.add(levelBar)
+  
+  statRow.add(icon)
+  statRow.add(contentBox)
+  box.add(statRow)
+  
+  return box
 }
 
-.launcher-btn:hover {
-  color: #5E81AC;
-  transform: scale(1.1);
+// Volume widget
+function VolumeWidget() {
+  const audio = Wp.get_default()
+  const speaker = audio?.audio.defaultSpeaker
+  
+  if (!speaker) {
+    return new Astal.Box({})
+  }
+  
+  const box = new Astal.Box({
+    className: "section",
+  })
+  
+  const icon = new Astal.Label({
+    className: "icon",
+  })
+  
+  speaker.connect("notify::mute", () => {
+    icon.label = speaker.mute ? "󰝟" : "󰕾"
+  })
+  icon.label = speaker.mute ? "󰝟" : "󰕾"
+  
+  const contentBox = new Astal.Box({
+    vertical: true,
+    hexpand: true,
+  })
+  
+  const labelRow = new Astal.Box({})
+  
+  const volumeLabel = new Astal.Label({
+    className: "label",
+    halign: Gtk.Align.START,
+    label: "Volume",
+  })
+  
+  const volumeValue = new Astal.Label({
+    className: "value",
+    halign: Gtk.Align.END,
+    hexpand: true,
+  })
+  
+  speaker.connect("notify::volume", () => {
+    volumeValue.label = `${Math.floor(speaker.volume * 100)}%`
+  })
+  volumeValue.label = `${Math.floor(speaker.volume * 100)}%`
+  
+  labelRow.add(volumeLabel)
+  labelRow.add(volumeValue)
+  
+  const slider = new Astal.Slider({
+    className: "volume-slider",
+    drawValue: false,
+    hexpand: true,
+  })
+  
+  slider.connect("dragged", () => {
+    speaker.volume = slider.value
+  })
+  
+  speaker.connect("notify::volume", () => {
+    slider.value = speaker.volume
+  })
+  slider.value = speaker.volume
+  
+  contentBox.add(labelRow)
+  contentBox.add(slider)
+  
+  box.add(icon)
+  box.add(contentBox)
+  
+  return box
 }
 
-// Workspaces
-.workspaces-section {
-  background: linear-gradient(135deg, rgba(136, 192, 208, 0.2), rgba(129, 161, 193, 0.2));
+// Main stats window
+function StatsWindow() {
+  const mainBox = new Astal.Box({
+    className: "main-container",
+    vertical: true,
+    spacing: 10,
+  })
+  
+  mainBox.add(TimeWidget())
+  mainBox.add(Launcher())
+  mainBox.add(BatteryWidget())
+  mainBox.add(VolumeWidget())
+  
+  return new Astal.Window({
+    className: "stats-window",
+    name: "stats",
+    anchor: Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT,
+    exclusivity: Astal.Exclusivity.NORMAL,
+    visible: false,
+    application: App.get_default(),
+    child: mainBox,
+  })
 }
 
-.workspace-btn {
-  font-size: 18px;
-  color: #D8DEE9;
-  background-color: rgba(59, 66, 82, 0.6);
-  border-radius: 8px;
-  padding: 8px 12px;
-  min-width: 40px;
-  margin: 0 2px;
-  transition: all 200ms ease;
-}
-
-.workspace-btn:hover {
-  background-color: rgba(94, 129, 172, 0.6);
-  color: #ECEFF4;
-}
-
-.workspace-btn.active {
-  background-color: rgba(94, 129, 172, 0.8);
-  color: #ECEFF4;
-  font-weight: bold;
-}
-
-// Stat rows
-.stat-row {
-  min-height: 40px;
-  margin-bottom: 8px;
-}
-
-.stat-row:last-child {
-  margin-bottom: 0;
-}
-
-.icon {
-  font-size: 24px;
-  color: #88C0D0;
-  min-width: 30px;
-  margin-right: 10px;
-}
-
-.label {
-  font-size: 14px;
-  color: #D8DEE9;
-  font-weight: 500;
-}
-
-.value {
-  font-size: 14px;
-  color: #ECEFF4;
-  font-weight: bold;
-}
-
-// Progress bars
-progressbar {
-  min-height: 6px;
-  border-radius: 3px;
-  background-color: rgba(59, 66, 82, 0.8);
-  margin-top: 4px;
-}
-
-progressbar trough {
-  min-height: 6px;
-  border-radius: 3px;
-  background-color: rgba(59, 66, 82, 0.8);
-}
-
-progressbar progress {
-  min-height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #88C0D0, #5E81AC);
-}
-
-.battery-bar progress {
-  background: linear-gradient(90deg, #A3BE8C, #8FBCBB);
-}
-
-// Player section
-.player-section {
-  background: linear-gradient(135deg, rgba(180, 142, 173, 0.2), rgba(163, 190, 140, 0.2));
-}
-
-.player-icon {
-  font-size: 28px;
-}
-
-.player-label {
-  font-size: 13px;
-}
-
-.player-controls {
-  margin-top: 10px;
-}
-
-.player-btn {
-  font-size: 20px;
-  color: #D8DEE9;
-  background-color: rgba(59, 66, 82, 0.6);
-  border-radius: 8px;
-  padding: 8px 16px;
-  margin: 0 5px;
-  transition: all 200ms ease;
-}
-
-.player-btn:hover {
-  background-color: rgba(94, 129, 172, 0.6);
-  color: #ECEFF4;
-}
-
-.play-pause {
-  background-color: rgba(94, 129, 172, 0.4);
-  color: #ECEFF4;
-}
-
-// Sliders
-scale {
-  min-height: 6px;
-  margin-top: 4px;
-}
-
-scale trough {
-  min-height: 6px;
-  border-radius: 3px;
-  background-color: rgba(59, 66, 82, 0.8);
-}
-
-scale highlight {
-  min-height: 6px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #B48EAD, #5E81AC);
-}
-
-scale slider {
-  min-width: 16px;
-  min-height: 16px;
-  border-radius: 50%;
-  background-color: #ECEFF4;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-scale:hover slider {
-  background-color: #88C0D0;
-}
+App.start({
+  css: "./style.css",
+  main() {
+    StatsWindow()
+  },
+})
