@@ -1,3 +1,11 @@
+{colorscheme}:
+with colorscheme.colors; let
+  OSLogo = builtins.fetchurl rec {
+    name = "OSLogo-${sha256}.png";
+    sha256 = "14mbpw8jv1w2c5wvfvj8clmjw0fi956bq5xf9s2q3my14far0as8";
+    url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg";
+  };
+in ''
 * {
     border: none;
     border-radius: 0px;
@@ -43,7 +51,8 @@ window#waybar {
 }
 
 #clock, #battery, #network, #pulseaudio, #temperature, #cpu, #memory,
-#custom-diskuse, #custom-p1g8power, #custom-energy, #custom-cooling {
+#custom-diskuse, #custom-p1g8power, #custom-energy, #custom-cooling,
+#tray, #backlight {
     color: #cdd6f4;
     background-color: rgba(12, 14, 15, 0.9);
     border-radius: 8px;
@@ -60,10 +69,24 @@ window#waybar {
     color: #f38ba8;
 }
 
-#tray {
+#custom-launcher {
+    color: #5af0ff;
+    background-color: rgba(12, 14, 15, 0.9);
     border-radius: 8px;
     margin: 0px 3px;
-    background-color: rgba(12, 14, 15, 0.9);
-    padding: 0px 15px;
+    padding: 0px 10px;
+    font-size: 22px;
     border-bottom: 2px solid #5D4A78;
 }
+
+#window {
+    background: rgba(12, 14, 15, 0.9);
+    padding: 0px 20px;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-style: normal;
+    border-bottom: 2px solid #5D4A78;
+}
+''
