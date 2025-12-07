@@ -911,15 +911,19 @@ home.packages = with pkgs; [ # user-only apps
   cliphist # wayland clipboard history manager
   eww # widgets and stuff
   fastfetch # quickly fetch general system info
-  fd # better file finding for telescope
+  fd # better file finding
   ffmpeg # video re-encoding CLI
+  fzf # yazi: quick file subtree navigation
   gnome-bluetooth # GUI for bluetooth devices
   imagemagick # image editing CLI
   imv # image viewer
+  jq # JSON preview in TUI file manager
   mission-center # system monitoring GUI
   networkmanagerapplet # nm-applet tray utility
   pavucontrol # audio control GUI
   playerctl # audio playback control utility
+  poppler # PDF previews in TUi file manager
+  resvg # yazi: SVG image preview
   ripgrep # nvim: required for telescope live_grep
   wofi # app launcher
   xfce.tumbler # image previews in file manager
