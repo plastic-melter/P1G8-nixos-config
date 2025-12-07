@@ -192,11 +192,14 @@ virtualisation = {
   virtualbox.host.enable = true;
 };
 
+systemd.services.libvirtd.stopIfChanged = false;
+
 networking = {
   hostName = "P1G8";
   networkmanager.enable = true;
   useDHCP = false;
   interfaces.wlp0s20f3.useDHCP = true;
+  interfaces.enp177s0.useDHCP = false;
   interfaces.enp177s0u1c2 = {    # electric eel adapter 2025-12-04
     ipv4.addresses = [{
       address = "169.254.1.1";   # or "192.168.1.100"
@@ -220,7 +223,7 @@ console = {
 };
 
 fonts = {
-  packages = with pkgs; [ carlito dejavu_fonts ipafont kochi-substitute liberation_ttf nerd-fonts.symbols-only noto-fonts-cjk-sans source-code-pro ttf_bitstream_vera xorg.fontmiscmisc xorg.fontcursormisc ];
+  packages = with pkgs; [ carlito dejavu_fonts ipafont kochi-substitute liberation_ttf nerd-fonts.symbols-only noto-fonts-cjk-sans source-code-pro ttf_bitstream_vera ];
   fontconfig.defaultFonts = {
     monospace = [
       "DejaVu Sans Mono"

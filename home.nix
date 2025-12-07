@@ -858,8 +858,8 @@ home.packages = with pkgs; [ # user-only apps
   dolphin-emu # GameCube/Wii emulator
   lutris # game manager like steam
   mame # arcade emulator
+  nsnake # terminal snake game
   protontricks # allows for Steam proton prefixes
-  snake4 # terminal game to pass short periods of time
   wineWowPackages.waylandFull # wine for wayland
   winetricks # install DLLs/etc into wine prefixes
 
