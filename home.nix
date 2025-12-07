@@ -162,6 +162,8 @@ dconf.settings = {
 
 services.playerctld.enable = true;
 
+services.syncthing.enable = true; # autostart service on user login; rest of syncthing is in conf.nix
+
 services.dunst = {
   enable = true;
   settings = {
