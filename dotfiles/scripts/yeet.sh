@@ -5,18 +5,19 @@ GREEN='\033[1;32m'
 RED='\033[1;31m'
 NC='\033[0m'
 
+# Add untracked files BEFORE building
+echo -e "${CYAN}Staging new files...${NC}"
+git -C /etc/nixos add -A
+
 echo -e "${CYAN}Rebuilding NixOS system...${NC}"
 
-# Run rebuild and show output in real-time, capture to variable for checking
+# Capture output and check for success
 BUILD_OUTPUT=$(doas nixos-rebuild switch --flake /etc/nixos 2>&1 | tee /dev/tty)
 
 # Check for both successful activation AND no failed units
 if echo "$BUILD_OUTPUT" | grep -q "activating the configuration" && \
    ! echo "$BUILD_OUTPUT" | grep -q "the following units failed"; then
     echo -e "${GREEN}Rebuild succeeded${NC}"
-    
-    echo -e "${CYAN}Staging all /etc/nixos changes...${NC}"
-    git -C /etc/nixos add -A
     
     # Only commit/push if online
     if ping -c 1 -W 1 8.8.8.8 &> /dev/null; then

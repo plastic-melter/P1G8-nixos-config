@@ -13,6 +13,7 @@ home = {
 
 home.file = {
   ".config/wofi".source = ./dotfiles/wofi;
+  ".config/yazi".source = ./dotfiles/yazi;
   ".config/waybar".source = ./dotfiles/waybar;
   ".config/ags" = {
     source = ./dotfiles/ags;
