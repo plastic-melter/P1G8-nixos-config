@@ -52,51 +52,6 @@ programs = {
       wayfire-plugins-extra
     ];
   };
-  neovim = {
-    enable = true;
-    package = pkgs.neovim-unwrapped;
-    viAlias = true;
-    vimAlias = true;
-    configure = { 
-      customRC = '' 
-      set clipboard^=unnamed,unnamedplus   " use system clipboard
-      set number                           " show line numbers
-      set nocompatible                     " disable vi compatibility mode
-      set ignorecase                       " case insensitive search
-      set smartcase                        " override ignorecase if search has uppercase
-      set hlsearch                         " highlight search matches
-      set incsearch                        " show search matches as you type
-      set tabstop=2                        " tab width = 2 spaces
-      set softtabstop=2                    " treat 2 spaces as a tab when editing
-      set expandtab                        " insert spaces instead of tabs
-      set autoindent                       " auto-indent new lines
-      set wildmode=longest,list            " bash-like tab completion
-      set mouse=a                          " enable mouse support
-      set cursorline                       " highlight current line
-      set ttyfast                          " faster scrolling
-      set list                             " show invisible characters
-      set listchars=tab:\|\                " display tabs as |
-      set foldmethod=marker                " fold based on markers {{{ }}}
-      filetype plugin indent on            " enable filetype detection and auto-indent
-      syntax on                            " enable syntax highlighting
-      
-      " copy to wayland clipboard with Ctrl-Space
-      nnoremap <C-@> :call system("wl-copy", @")<CR>
-      
-      " transparent background
-      set termguicolors
-      hi Normal guibg=NONE ctermbg=NONE
-      hi NormalFloat guibg=NONE ctermbg=NONE
-      hi SignColumn guibg=NONE ctermbg=NONE
-      
-      " easy-to-read colors
-      set guicursor=n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor
-      highlight Cursor guifg=black guibg=#aaffff
-      highlight iCursor guifg=black guibg=#aaffff
-      highlight Search guifg=black guibg=#ffb366
-      '';
-    };
-  };
 };
 
 boot = {
@@ -500,6 +455,7 @@ environment.systemPackages = with pkgs; [ # system-level apps
   iotop # view disk usage/processes
   killall # allows for killing processes by name
   moreutils # useful UNIX tools: ts, sponge, vidir, etc.
+  neovim # vim with more goodness
   nixos-option # query NixOS module options
   ntfs3g # allows to read/write NTFS
   p7zip # 7z/rar/zip compression tool

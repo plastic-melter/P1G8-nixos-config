@@ -14,7 +14,7 @@ window#waybar {
 }
 
 #workspaces {
-    background-color: rgba(12, 14, 15, 0.9);
+    background-color: rgba(12, 14, 15, 0.00);
     color: #cdd6f4;
     padding: 6px 15px;
     margin: 0px 3px;

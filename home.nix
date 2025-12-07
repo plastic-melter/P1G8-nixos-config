@@ -62,6 +62,132 @@ programs.git = {
   };
 };
 
+programs.neovim = {
+  enable = true;
+  viAlias = true;
+  vimAlias = true;
+  defaultEditor = true;
+  plugins = with pkgs.vimPlugins; [
+    # Colorscheme
+    catppuccin-nvim
+    # Syntax highlighting
+    nvim-treesitter.withAllGrammars
+    # Fuzzy finder
+    telescope-nvim
+    plenary-nvim  # required by telescope
+    # Statusline
+    lualine-nvim
+    nvim-web-devicons  # icons for lualine
+    # Git signs
+    gitsigns-nvim
+    # Indent guides
+    indent-blankline-nvim
+    # Smooth scrolling
+    neoscroll-nvim
+    # Floating terminal
+    toggleterm-nvim
+  ];
+  extraLuaConfig = ''
+    -- Colorscheme
+    vim.cmd.colorscheme('catppuccin-mocha')
+    require('catppuccin').setup({
+      transparent_background = true,
+      term_colors = true,
+    })
+    -- Basic settings
+    vim.opt.number = true
+    vim.opt.relativenumber = true
+    vim.opt.cursorline = true
+    vim.opt.ignorecase = true
+    vim.opt.smartcase = true
+    vim.opt.hlsearch = true
+    vim.opt.incsearch = true
+    vim.opt.tabstop = 2
+    vim.opt.softtabstop = 2
+    vim.opt.shiftwidth = 2
+    vim.opt.expandtab = true
+    vim.opt.autoindent = true
+    vim.opt.mouse = 'a'
+    vim.opt.clipboard = 'unnamedplus'
+    vim.opt.termguicolors = true
+    vim.opt.list = true
+    vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
+    -- Treesitter
+    require('nvim-treesitter.configs').setup({
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+      indent = { enable = true },
+    })
+    -- Lualine (statusline)
+    require('lualine').setup({
+      options = {
+        theme = 'catppuccin',
+        component_separators = { left = /'/', right = /'/' },
+        section_separators = { left = /'/', right =  /'/' },
+      },
+    })
+    -- Telescope (fuzzy finder)
+    require('telescope').setup({
+      defaults = {
+        layout_config = {
+          horizontal = { preview_width = 0.6 },
+        },
+      },
+    })
+    -- Keybinds for telescope
+    vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find files' })
+    vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Live grep' })
+    vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'Buffers' })
+    -- Gitsigns
+    require('gitsigns').setup({
+      signs = {
+        add          = { text = '│' },
+        change       = { text = '│' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+    })
+    -- Indent guides
+    require('ibl').setup({
+      indent = { char = '│' },
+      scope = { enabled = false },
+    })
+    -- Smooth scrolling
+    require('neoscroll').setup({
+      mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+      hide_cursor = true,
+      stop_eof = true,
+      respect_scrolloff = false,
+      cursor_scrolls_alone = true,
+    })
+    -- Floating terminal
+    require('toggleterm').setup({
+      size = 20,
+      open_mapping = [[<c-\>]],
+      hide_numbers = true,
+      shade_terminals = true,
+      shading_factor = 2,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      direction = 'float',
+      close_on_exit = true,
+      shell = vim.o.shell,
+      float_opts = {
+        border = 'curved',
+        winblend = 0,
+      },
+    })
+    -- Copy to wayland clipboard with Ctrl-Space
+    vim.keymap.set('n', '<C-Space>', function()
+      vim.fn.system('wl-copy', vim.fn.getreg('"'))
+    end, { desc = 'Copy to clipboard' })
+  '';
+};
+
 wayland.windowManager.hyprland = {
   enable = true;
   xwayland.enable = true;
@@ -130,8 +256,6 @@ programs.zsh = {
     dots = "ranger /etc/nixos/dotfiles";
     scripts = "ranger /etc/nixos/dotfiles/scripts";
     clc = "clear";
-    range = "ranger";
-    rranger = "ranger";
     kms = "/etc/nixos/dotfiles/scripts/kms.sh";
     kys = "pkill";
     notes = "vim ~/.notes.md";
@@ -814,6 +938,7 @@ home.packages = with pkgs; [ # user-only apps
   cliphist # wayland clipboard history manager
   eww # widgets and stuff
   fastfetch # quickly fetch general system info
+  fd # better file finding for telescope
   ffmpeg # video re-encoding CLI
   ffmpegthumbnailer # ranger image previews
   gnome-bluetooth # GUI for bluetooth devices
@@ -823,6 +948,8 @@ home.packages = with pkgs; [ # user-only apps
   networkmanagerapplet # nm-applet tray utility
   pavucontrol # audio control GUI
   playerctl # audio playback control utility
+  ripgrep # nvim: required for telescope live_grep
+  ueberzug # ranger image previews
   wofi # app launcher
   xfce.tumbler # image previews in file manager
   zsh-powerlevel10k # fancy ZSH PS1
