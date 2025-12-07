@@ -210,7 +210,6 @@ networking = {
     }];
     useDHCP = false;
   };
-  dhcpcd.waitOnline = false;
 }; 
 
 systemd.network.wait-online.enable = false;
