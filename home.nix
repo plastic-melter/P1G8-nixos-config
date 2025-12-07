@@ -80,6 +80,12 @@ programs.neovim = {
     toggleterm-nvim
   ];
   extraLuaConfig = ''
+    vim.filetype.add({
+      filename = {
+        ['config'] = 'conf',
+        ['conf'] = 'conf',
+      },
+    })
     vim.cmd('colorscheme slate')
     vim.cmd([[
       hi Normal guibg=NONE ctermbg=NONE
