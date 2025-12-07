@@ -24,7 +24,6 @@ home.file = {
     recursive = true;
   };
   ".config/wlogout".source = ./dotfiles/wlogout;
-  ".config/ranger".source = ./dotfiles/ranger;
   ".config/plutonium".source = ./dotfiles/plutonium;
   ".config/scripts".source = ./dotfiles/scripts;
   ".config/wallpapers".source = ./dotfiles/wallpapers;
