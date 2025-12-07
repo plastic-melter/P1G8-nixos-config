@@ -11,12 +11,9 @@ home = {
   homeDirectory = "/home/joe";
 };
 
-imports = [
-  ./dotfiles/wofi
-  ./dotfiles/waybar
-];
-
 home.file = {
+  ".config/wofi".source = ./dotfiles/wofi;
+  ".config/waybar".source = ./dotfiles/waybar;
   ".config/ags" = {
     source = ./dotfiles/ags;
     recursive = true;
@@ -33,9 +30,6 @@ home.file = {
   ".config/nwg-drawer".source = ./dotfiles/nwg-drawer;
   ".config/foot".source = ./dotfiles/foot;
   ".config/wezterm".source = ./dotfiles/wezterm;
-  #".themes/Chicago95".source = ./dotfiles/Chicago95/Theme/Chicago95;
-  #".icons/Chicago95-tux".source = ./dotfiles/Chicago95/Icons/Chicago95-tux;
-  #".icons/Chicago95_cursors".source = ./dotfiles/Chicago95/Cursors;
   ".config/user-dirs.conf".text = ''
     enabled=True
   '';
@@ -827,6 +821,7 @@ home.packages = with pkgs; [ # user-only apps
   networkmanagerapplet # nm-applet tray utility
   pavucontrol # audio control GUI
   playerctl # audio playback control utility
+  wofi # app launcher
   xfce.tumbler # image previews in file manager
   zsh-powerlevel10k # fancy ZSH PS1
 
