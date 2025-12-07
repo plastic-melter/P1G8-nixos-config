@@ -103,10 +103,10 @@
       "critical": 15
     },
     "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": "  {capacity}%",
+    "format-charging": "󰚥 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
     "format-alt": "󱧦 {time}",
-    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+    "format-icons": ["󰁺 ", "󰁼 ", "󰁾 ", "󰂀 ", "󰁹 "],
     "interval": 1
   },
   "memory": {
