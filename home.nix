@@ -194,16 +194,6 @@ programs.zsh = {
     P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
     [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
   '';
-  initExtra = ''
-    function yazi() {
-      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-      command yazi "$@" --cwd-file="$tmp"
-      if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        cd -- "$cwd"
-      fi
-      rm -f -- "$tmp"
-    }
-  '';
   localVariables = {
     POWERLEVEL9K_SHORTEN_STRATEGY = "truncate_middle";
     POWERLEVEL9K_SHORTEN_DIR_LENGHTH = "2";
