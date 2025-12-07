@@ -16,7 +16,7 @@ in ''
 }
 
 window#waybar {
-    background: rgba(12, 14, 15, 0.85);
+    background: rgba(12, 14, 15, 0.15);
     border-bottom: 0px;
     color: #cdd6f4;
 }
