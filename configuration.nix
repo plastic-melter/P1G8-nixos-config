@@ -210,9 +210,11 @@ networking = {
     }];
     useDHCP = false;
   };
+  dhcpcd.waitOnline = false;
 }; 
 
 systemd.network.wait-online.enable = false;
+systemd.services.NetworkManager-wait-online.enable = false;
 
 time.timeZone = "America/Los_Angeles";
 
