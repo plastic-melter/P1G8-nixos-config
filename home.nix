@@ -717,6 +717,8 @@ home.sessionVariables = {
   TERMINAL = "wezterm";
   TERM_PROGRAM = "wezterm";
   GI_TYPELIB_PATH = "/run/current-system/sw/lib/girepository-1.0"; #AGS
+  EDITOR = "nvim";
+  VISUAL = "nvim";
 };
 
 systemd.user.sessionVariables = {
