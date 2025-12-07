@@ -196,7 +196,10 @@ systemd.services.libvirtd.stopIfChanged = false;
 
 networking = {
   hostName = "P1G8";
-  networkmanager.enable = true;
+  networkmanager = {
+    enable = true;
+    unmanaged = [ "enp177s0" "enp177s0u1c2" ];
+  };
   useDHCP = false;
   interfaces.wlp0s20f3.useDHCP = true;
   interfaces.enp177s0.useDHCP = false;
