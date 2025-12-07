@@ -32,9 +32,9 @@ nixpkgs.config = {
 programs = {
   zsh.enable = true;
   dconf.enable = true;
-  #steam = {
-  #  enable = true;
-  #};
+  steam = {
+    enable = true;
+  };
   seahorse.enable = true;
   adb.enable = true;
   gamescope.enable = true;
