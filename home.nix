@@ -910,6 +910,7 @@ home.packages = with pkgs; [ # user-only apps
   webcord # webkit app for discord, less proprietary
   wezterm # dope-ass terminal emulator
   xfce.thunar # GUI file manager
+  yazi # TUI file manager
   zoom-us # video chat software
 
   # UTILITIES
@@ -930,7 +931,6 @@ home.packages = with pkgs; [ # user-only apps
   pavucontrol # audio control GUI
   playerctl # audio playback control utility
   ripgrep # nvim: required for telescope live_grep
-  ueberzug # ranger image previews
   wofi # app launcher
   xfce.tumbler # image previews in file manager
   zsh-powerlevel10k # fancy ZSH PS1
