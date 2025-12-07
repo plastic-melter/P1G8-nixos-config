@@ -6,13 +6,13 @@ RED='\033[1;31m'
 NC='\033[0m'
 
 echo -e "${CYAN}Rebuilding NixOS system...${NC}"
-if doas nixos-rebuild switch --flake /etc/nixos 2>&1 | grep -v "warning: Git tree.*is dirty"; then
-    REBUILD_SUCCESS=$?
-else
-    REBUILD_SUCCESS=$?
-fi
 
-if [ $REBUILD_SUCCESS -eq 0 ]; then
+# Capture output and check for success
+BUILD_OUTPUT=$(doas nixos-rebuild switch --flake /etc/nixos 2>&1)
+echo "$BUILD_OUTPUT" | grep -v "warning: Git tree.*is dirty"
+
+# Check if rebuild actually succeeded by looking for activation message
+if echo "$BUILD_OUTPUT" | grep -q "activating the configuration"; then
     echo -e "${GREEN}Rebuild succeeded${NC}"
     
     echo -e "${CYAN}Staging all /etc/nixos changes...${NC}"
