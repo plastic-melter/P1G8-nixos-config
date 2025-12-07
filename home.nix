@@ -223,7 +223,7 @@ programs.zsh = {
   };
   #alias
   shellAliases = {
-    games = "ranger /home/joe/Backups/Games/quick-access";
+    games = "yazi /home/joe/Backups/Games/quick-access";
     dotsync = "doas /etc/nixos/dotfiles/scripts/nixos-git-sync.sh";
     gens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     yeet = "/etc/nixos/dotfiles/scripts/yeet.sh";
@@ -234,8 +234,8 @@ programs.zsh = {
     sys = "doas vim /etc/nixos/configuration.nix";
     home = "vim /etc/nixos/home.nix";
     flake = "doas vim /etc/nixos/flake.nix";
-    dots = "ranger /etc/nixos/dotfiles";
-    scripts = "ranger /etc/nixos/dotfiles/scripts";
+    dots = "yazi /etc/nixos/dotfiles";
+    scripts = "yazi /etc/nixos/dotfiles/scripts";
     clc = "clear";
     kms = "/etc/nixos/dotfiles/scripts/kms.sh";
     kys = "pkill";
@@ -724,16 +724,6 @@ xdg.desktopEntries = {
     categories = [ "Utility" ];
     type = "Application";
   };
-  ranger = {
-    name = "ranger";
-    genericName = "ranger";
-    exec = "foot -e ranger";
-    icon = "/etc/nixos/dotfiles/images/folder.png";
-    terminal = false;
-    categories = [ "Utility" ];
-    comment = "TUI File Manager";
-    type = "Application";
-  }; 
   pavucontrol = {
     name = "Pavucontrol";
     exec = "pavucontrol";
@@ -922,7 +912,6 @@ home.packages = with pkgs; [ # user-only apps
   fastfetch # quickly fetch general system info
   fd # better file finding for telescope
   ffmpeg # video re-encoding CLI
-  ffmpegthumbnailer # ranger image previews
   gnome-bluetooth # GUI for bluetooth devices
   imagemagick # image editing CLI
   imv # image viewer
