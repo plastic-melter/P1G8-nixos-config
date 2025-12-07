@@ -194,6 +194,16 @@ programs.zsh = {
     P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
     [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
   '';
+  initExtra = ''
+    function y() {
+      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+      yazi "$@" --cwd-file="$tmp"
+      if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+      fi
+      rm -f -- "$tmp"
+    }
+  '';
   localVariables = {
     POWERLEVEL9K_SHORTEN_STRATEGY = "truncate_middle";
     POWERLEVEL9K_SHORTEN_DIR_LENGHTH = "2";
@@ -222,7 +232,6 @@ programs.zsh = {
     POWERLEVEL9K_TIME_BACKGROUND = "233";
     EDITOR = "vi";
   };
-  #alias
   shellAliases = {
     games = "yazi /home/joe/Backups/Games/quick-access";
     dotsync = "doas /etc/nixos/dotfiles/scripts/nixos-git-sync.sh";
