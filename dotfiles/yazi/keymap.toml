@@ -1,8 +1,7 @@
-[manager]
+[mgr]
 prepend_keymap = [
   # Exit to current directory
   { on = [ "S" ], run = "quit --cwd", desc = "Quit to CWD" },
-  
   # Exit to original directory
-  { on = [ "q" ], run = "quit", desc = "Quit to original dir" },
+  { on = [ "q" ], run = "quit", desc = "Quit" },
 ]
