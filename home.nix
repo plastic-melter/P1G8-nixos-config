@@ -68,35 +68,28 @@ programs.neovim = {
   vimAlias = true;
   defaultEditor = true;
   plugins = with pkgs.vimPlugins; [
-    # Colorscheme
-    catppuccin-nvim
-    # Syntax highlighting
     nvim-treesitter.withAllGrammars
-    # Fuzzy finder
     telescope-nvim
-    plenary-nvim  # required by telescope
-    # Statusline
+    plenary-nvim
     lualine-nvim
-    nvim-web-devicons  # icons for lualine
-    # Git signs
+    nvim-web-devicons
     gitsigns-nvim
-    # Indent guides
     indent-blankline-nvim
-    # Smooth scrolling
     neoscroll-nvim
-    # Floating terminal
     toggleterm-nvim
   ];
   extraLuaConfig = ''
-    -- Colorscheme
-    vim.cmd.colorscheme('catppuccin-mocha')
-    require('catppuccin').setup({
-      transparent_background = true,
-      term_colors = true,
-    })
-    -- Basic settings
+    vim.cmd('colorscheme slate')
+    vim.cmd([[
+      hi Normal guibg=NONE ctermbg=NONE
+      hi NormalFloat guibg=NONE ctermbg=NONE
+      hi SignColumn guibg=NONE ctermbg=NONE
+      highlight Cursor guifg=black guibg=#aaffff
+      highlight iCursor guifg=black guibg=#aaffff
+      highlight Search guifg=black guibg=#ffb366
+    ]])
     vim.opt.number = true
-    vim.opt.relativenumber = true
+    vim.opt.relativenumber = false
     vim.opt.cursorline = true
     vim.opt.ignorecase = true
     vim.opt.smartcase = true
@@ -110,52 +103,45 @@ programs.neovim = {
     vim.opt.mouse = 'a'
     vim.opt.clipboard = 'unnamedplus'
     vim.opt.termguicolors = true
+    vim.opt.ttyfast = true
+    vim.opt.compatible = false
     vim.opt.list = true
     vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
-    -- Treesitter
+    vim.opt.wildmode = 'longest,list'
+    vim.opt.foldmethod = 'marker'
+    vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor'
+    vim.cmd('filetype plugin indent on')
+    vim.cmd('syntax on')
     require('nvim-treesitter.configs').setup({
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
+      highlight = { enable = true, additional_vim_regex_highlighting = false },
       indent = { enable = true },
     })
-    -- Lualine (statusline)
     require('lualine').setup({
       options = {
-        theme = 'catppuccin',
-        component_separators = { left = /'/', right = /'/' },
-        section_separators = { left = /'/', right =  /'/' },
+        theme = 'auto',
+        component_separators = { left = " ", right = " " },
+        section_separators = { left = " ", right = " " },
       },
     })
-    -- Telescope (fuzzy finder)
     require('telescope').setup({
-      defaults = {
-        layout_config = {
-          horizontal = { preview_width = 0.6 },
-        },
-      },
+      defaults = { layout_config = { horizontal = { preview_width = 0.6 } } },
     })
-    -- Keybinds for telescope
     vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find files' })
     vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Live grep' })
     vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'Buffers' })
-    -- Gitsigns
     require('gitsigns').setup({
       signs = {
-        add          = { text = '│' },
-        change       = { text = '│' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
+        add = { text = '│' },
+        change = { text = '│' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
     })
-    -- Indent guides
     require('ibl').setup({
       indent = { char = '│' },
       scope = { enabled = false },
     })
-    -- Smooth scrolling
     require('neoscroll').setup({
       mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
       hide_cursor = true,
@@ -163,7 +149,6 @@ programs.neovim = {
       respect_scrolloff = false,
       cursor_scrolls_alone = true,
     })
-    -- Floating terminal
     require('toggleterm').setup({
       size = 20,
       open_mapping = [[<c-\>]],
@@ -176,12 +161,8 @@ programs.neovim = {
       direction = 'float',
       close_on_exit = true,
       shell = vim.o.shell,
-      float_opts = {
-        border = 'curved',
-        winblend = 0,
-      },
+      float_opts = { border = 'curved', winblend = 0 },
     })
-    -- Copy to wayland clipboard with Ctrl-Space
     vim.keymap.set('n', '<C-Space>', function()
       vim.fn.system('wl-copy', vim.fn.getreg('"'))
     end, { desc = 'Copy to clipboard' })
