@@ -102,15 +102,15 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}  {capacity}%",
-    "format-charging": "  {capacity}%",
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
     "format-plugged": "  {capacity}%",
-    "format-alt": "{icon} {time}",
-    "format-icons": [" ", " ", " ", " ", " "],
+    "format-alt": "󱧦 {time}",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
     "interval": 1
   },
   "memory": {
-    "format": "  {percentage}%",
+    "format": "󰍛  {percentage}%",
     "tooltip-format": " {used} / {total} GiB | SWAP: {swapUsed} / {swapTotal} GiB",
     "format-alt": "{used} / {total} GiB | {swapUsed} / {swapTotal} GiB",
     "tooltip": "true",
@@ -139,7 +139,7 @@
     "spacing": 5
   },
   "backlight": {
-    "format": "{icon}  {percent}%",
+    "format": " {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "tooltip-format": ""
   },
