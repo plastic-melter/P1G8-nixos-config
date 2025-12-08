@@ -158,7 +158,7 @@ systemd.services = {
   libvirtd.stopIfChanged = false;
   fwupd = {
     wantedBy = lib.mkForce []; # Prevent boot slowdown
-    fwupd-refresh.wantedBy = lib.mkForce;
+    fwupd-refresh.enable = false;
   };
 };
 
