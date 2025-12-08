@@ -7,7 +7,7 @@ vim.filetype.add({
 })
 
 -- General settings
-vim.opt.autoindent = false
+vim.opt.autoindent = true
 vim.opt.smartindent = false
 vim.opt.number = true
 vim.opt.relativenumber = false
