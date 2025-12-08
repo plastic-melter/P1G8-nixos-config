@@ -300,22 +300,29 @@ services = {
     };
     pulse.enable = true;
     jack.enable = true;
-    wireplumber.enable = true;
-    #wireplumber.extraConfig."90-disable-hsp-hfp" = {
-    #  "wireplumber.settings" = {
-    #    "bluetooth.disabled-profiles" = [
-    #      "hsp_hf"
-    #      "hsp_ag"
-    #      "hfp_hf"
-    #      "hfp_ag"
-    #    ];
-    #  };
-    #};
-    #wireplumber.extraConfig."20-force-sbc" = {
-    #  "wireplumber.settings" = {
-    #    "bluetooth.codecs" = [ "sbc" ];
-    #  };
-    #};
+    wireplumber = {
+      enable = true;
+      configPackages = [
+        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-limit-volume.conf" ''
+           monitor.alsa.rules = [
+             {
+               matches = [
+                 {
+                   node.name = "~alsa_output.*"
+                 }
+               ]
+               actions = {
+                 update-props = {
+                   api.alsa.soft-mixer = true
+                   api.alsa.volume-method = "softvol"
+                   audio.volume.max = 1.0
+                 }
+               }
+             }
+           ]
+         '')
+       ];
+    };
   };
   displayManager = {
     sddm = {
