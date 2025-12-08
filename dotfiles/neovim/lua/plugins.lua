@@ -10,9 +10,16 @@ require('lualine').setup({
     theme = 'catppuccin',
     component_separators = { left = " ", right = " " },
     section_separators = { left = " ", right = " " },
+    globalstatus = true,  -- Single statusline across all windows
   },
 })
-
+-- Add separator line above statusline
+vim.opt.laststatus = 3  -- Global statusline
+vim.cmd([[
+  highlight StatusLine guibg=#313244 guifg=#cdd6f4
+  highlight StatusLineNC guibg=#313244 guifg=#6c7086
+  set fillchars+=stl:─,stlnc:─
+]])
 -- Telescope configuration
 require('telescope').setup({
   defaults = { layout_config = { horizontal = { preview_width = 0.6 } } },

@@ -29,6 +29,7 @@ vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
 vim.opt.wildmode = 'longest,list'
 vim.opt.foldmethod = 'marker'
 vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor'
+vim.opt.signcolumn = 'yes'
 
 -- Custom highlights for cursor
 vim.cmd([[
