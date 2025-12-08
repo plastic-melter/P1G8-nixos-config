@@ -1,0 +1,6 @@
+[mgr]
+prepend_keymap = [
+  { on = "S", run = "quit --cwd", desc = "Exit to current directory" },
+  { on = "!", run = "shell --interactive", desc = "Open shell prompt" },
+  { on = "s", run = "shell --block", desc = "Shell in current dir" },
+]
