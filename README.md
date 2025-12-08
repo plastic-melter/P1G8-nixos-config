@@ -13,11 +13,17 @@ Config files for:
 - [Yazi](https://yazi-rs.github.io), an awesome TUI file browser.
 - [AGS](https://aylur.github.io/ags/), a great way to ruin your sleep schedule. **⚠️ WIP**
 - [EWW](https://elkowar.github.io/eww/), an easier way to ruin your sleep schedule **⚠️ WIP**
-- [Wayfire](https://wayfire.org), a great wayland compositor for when Hyprland kills itself **⚠️ Ancient**
 - [wlogout](https://github.com/ArtsyMacaw/wlogout), a stylish way to take a break from the computer.
 ...among others, along with various useful scripts. 
-
 
 Personal to-do list: 
 - explore AGS and EWW
 - make things look nicer (skill issue)
+
+Why NixOS?
+- Declarative system configuration: your entire system lives in version-controlled text files you can read, understand, and modify in one place (no more mystery edits buried deep in /etc, forgotten PPAs, or "I ran some command 3 years ago and now I can't remember what it was")
+- Reproducible: same config = same system bit-for-bit identical, deploy to new machines in minutes, no more messy "hope it works" install scripts
+- Atomic updates and rollbacks: system changes are transactional, either fully applied or not at all, and trivially reversible, making your system unbreakable
+- Isolated dependencies: multiple versions of packages coexist without conflicts, never encounter dependency hell
+- Security: immutable system files, easy auditing of the entire system state
+- Nixpkgs: largest (ever-growing) collection of pre-built, reproducibly packages software for any distro
