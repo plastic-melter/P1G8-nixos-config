@@ -11,7 +11,7 @@ home = {
 };
 
 # ============================================
-# DOTFILES CONFIGURATION
+# DOTFILES TO PULL INTO ~/.config
 # ============================================
 
 home.file = {
