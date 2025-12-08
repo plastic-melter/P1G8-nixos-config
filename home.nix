@@ -27,7 +27,6 @@ home.file = {
   ".config/wlogout".source = ./dotfiles/wlogout;
   ".config/plutonium".source = ./dotfiles/plutonium;
   ".config/scripts".source = ./dotfiles/scripts;
-  ".config/wallpapers".source = ./dotfiles/wallpapers;
   ".config/nwg-drawer".source = ./dotfiles/nwg-drawer;
   ".config/nwg-panel".source = ./dotfiles/nwg-panel;
   ".config/foot".source = ./dotfiles/foot;
