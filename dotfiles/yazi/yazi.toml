@@ -4,7 +4,7 @@ image_alloc      = 536870912  # 512MB
 image_bound      = [ 50000, 50000 ]
 suppress_preload = false
 
-[manager]
+[mgr]
 # Remove the line below the first file in preview pane
 show_hidden = false
 show_symlink = true
