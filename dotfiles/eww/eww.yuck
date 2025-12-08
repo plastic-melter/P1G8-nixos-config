@@ -5,8 +5,8 @@
   :monitor 0
   :geometry (geometry :x "0%"
                       :y "0%"
-                      :width "800px"
-                      :height "600px"
+                      :width "877px"
+                      :height "632px"
                       :anchor "center")
   :stacking "overlay"
   :exclusive false
@@ -15,8 +15,8 @@
        :orientation "v"
        :space-evenly false
     (image :path greeting_image
-           :image-width 500
-           :image-height 500)
+           :image-width 577
+           :image-height 5432)
     (label :class "greeting-text"
            :halign "center"
            :text greeting_text)
