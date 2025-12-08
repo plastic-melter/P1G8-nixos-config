@@ -11,15 +11,15 @@
   (box :class "chime-box"
        :orientation "v"
        :space-evenly false
-    (image :path chime_image
-           :image-width 577
-           :image-height 432)
     (label :class "time-text"
            :halign "center"
            :text chime_time)
     (label :class "date-text"
            :halign "center"
            :text chime_date)))
+    (image :path chime_image
+           :image-width 577
+           :image-height 432)
 
 (defvar chime_image "/etc/nixos/dotfiles/images/greetings/clock.jpg")
 (defpoll chime_time :interval "1s" "date '+%I:%M %p'")
