@@ -69,6 +69,7 @@ programs.neovim = {
   vimAlias = true;
   defaultEditor = true;
   plugins = with pkgs.vimPlugins; [
+    catppuccin-nvim
     nvim-treesitter.withAllGrammars
     telescope-nvim
     plenary-nvim
@@ -79,101 +80,7 @@ programs.neovim = {
     neoscroll-nvim
     toggleterm-nvim
   ];
-  extraLuaConfig = ''
-    vim.filetype.add({
-      filename = {
-        ['config'] = 'toml',
-        ['conf'] = 'toml',
-      },
-    })
-    vim.cmd('colorscheme slate')
-    vim.cmd([[
-      hi Normal guibg=NONE ctermbg=NONE
-      hi NormalFloat guibg=NONE ctermbg=NONE
-      hi SignColumn guibg=NONE ctermbg=NONE
-      highlight Cursor guifg=black guibg=#aaffff
-      highlight iCursor guifg=black guibg=#aaffff
-      highlight Search guifg=black guibg=#ffb366
-    ]])
-    vim.opt.number = true
-    vim.opt.relativenumber = false
-    vim.opt.cursorline = true
-    vim.opt.ignorecase = true
-    vim.opt.smartcase = true
-    vim.opt.hlsearch = true
-    vim.opt.incsearch = true
-    vim.opt.tabstop = 2
-    vim.opt.softtabstop = 2
-    vim.opt.shiftwidth = 2
-    vim.opt.expandtab = true
-    vim.opt.autoindent = true
-    vim.opt.mouse = 'a'
-    vim.opt.clipboard = 'unnamedplus'
-    vim.opt.termguicolors = true
-    vim.opt.ttyfast = true
-    vim.opt.compatible = false
-    vim.opt.list = true
-    vim.opt.listchars = { tab = '│ ', trail = '·', nbsp = '␣' }
-    vim.opt.wildmode = 'longest,list'
-    vim.opt.foldmethod = 'marker'
-    vim.opt.guicursor = 'n-v-c:block-Cursor,i-ci-ve:ver25-iCursor,r-cr:hor20-Cursor'
-    vim.cmd('filetype plugin indent on')
-    vim.cmd('syntax on')
-    require('nvim-treesitter.configs').setup({
-      highlight = { enable = true, additional_vim_regex_highlighting = false },
-      indent = { enable = true },
-    })
-    require('lualine').setup({
-      options = {
-        theme = 'auto',
-        component_separators = { left = " ", right = " " },
-        section_separators = { left = " ", right = " " },
-      },
-    })
-    require('telescope').setup({
-      defaults = { layout_config = { horizontal = { preview_width = 0.6 } } },
-    })
-    vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'Find files' })
-    vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', { desc = 'Live grep' })
-    vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'Buffers' })
-    require('gitsigns').setup({
-      signs = {
-        add = { text = '│' },
-        change = { text = '│' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    })
-    require('ibl').setup({
-      indent = { char = '│' },
-      scope = { enabled = false },
-    })
-    require('neoscroll').setup({
-      mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-      hide_cursor = true,
-      stop_eof = true,
-      respect_scrolloff = false,
-      cursor_scrolls_alone = true,
-    })
-    require('toggleterm').setup({
-      size = 20,
-      open_mapping = [[<c-\>]],
-      hide_numbers = true,
-      shade_terminals = true,
-      shading_factor = 2,
-      start_in_insert = true,
-      insert_mappings = true,
-      persist_size = true,
-      direction = 'float',
-      close_on_exit = true,
-      shell = vim.o.shell,
-      float_opts = { border = 'curved', winblend = 0 },
-    })
-    vim.keymap.set('n', '<C-Space>', function()
-      vim.fn.system('wl-copy', vim.fn.getreg('"'))
-    end, { desc = 'Copy to clipboard' })
-  '';
+  extraLuaConfig = builtins.readFile ./dotfiles/neovim/init.lua;
 };
 
 wayland.windowManager.hyprland = {
