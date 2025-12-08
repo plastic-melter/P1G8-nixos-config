@@ -423,11 +423,23 @@
   # HIDDEN ENTRIES
   # ============================================
   
-  footclient.noDisplay = true;
-  footserver.noDisplay = true;
-  protontricks.noDisplay = true;
-  kbd-layout-viewer5.noDisplay = true;
-  kvantum.noDisplay = true;
-  xterm.noDisplay = true;
-  android-file-transfer.noDisplay = true;
-}
+  protontricks = {
+    name = "Protontricks";
+    noDisplay = true;
+  };
+  kbd-layout-viewer5 = {
+    name = "Keyboard Layout Viewer";
+    noDisplay = true;
+  };
+  kvantum = {
+    name = "Kvantum";
+    noDisplay = true;
+  };
+  xterm = {
+    name = "XTerm";
+    noDisplay = true;
+  };
+  android-file-transfer = {
+    name = "Android File Transfer";
+    noDisplay = true;
+  };
