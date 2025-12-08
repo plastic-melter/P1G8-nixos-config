@@ -10,13 +10,13 @@ Config files for:
 - [nwg-shell](https://github.com/nwg-piotr/nwg-shell), a set of great Wayland UI stuff.
 - [Wofi](https://hg.sr.ht/~scoopta/wofi), a little application launcher.
 - [Yazi](https://yazi-rs.github.io), an awesome TUI file browser.
-- [AGS](https://github.com/Aylur/ags), a great way to ruin your sleep schedule. **⚠️ WIP**
+- [AGS](https://aylur.github.io/ags/), a great way to ruin your sleep schedule. **⚠️ WIP**
 - [EWW](https://elkowar.github.io/eww/), an easier way to ruin your sleep schedule **⚠️ WIP**
 - [Wayfire](https://wayfire.org), a great wayland compositor for when Hyprland breaks **⚠️ Ancient**
 - [wlogout](https://github.com/ArtsyMacaw/wlogout), a stylish way to take a break from the computer.
 ...among others, along with various useful scripts. 
 
 
-To-do list: 
-- explore AGS and EWW
-- make things look nicer
+Personal to-do list: 
+- explore AGS and EWW to make things more convenient
+- make things look nicer (skill issue)
