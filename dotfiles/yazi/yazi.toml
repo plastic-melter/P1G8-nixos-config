@@ -1,4 +1,19 @@
+# Image size limit (default is small)
 [tasks]
 image_alloc      = 536870912  # 512MB
 image_bound      = [ 50000, 50000 ]
 suppress_preload = false
+
+[manager]
+# Remove the line below the first file in preview pane
+show_hidden = false
+show_symlink = true
+scrolloff = 5
+
+# Border configuration
+ratio = [2, 5, 5]
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "size"
