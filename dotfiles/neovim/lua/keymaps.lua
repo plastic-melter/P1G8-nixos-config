@@ -6,7 +6,7 @@ vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', { desc = 'Buffer
 vim.keymap.set('i', '<BS>', function()
   local col = vim.fn.col('.')
   local line = vim.fn.getline('.')
-  -- Check if we're after spaces
+  -- Check if we're after 2 spaces
   if col > 2 and line:sub(col-2, col-1) == '  ' then
     return '<BS><BS>'
   end
