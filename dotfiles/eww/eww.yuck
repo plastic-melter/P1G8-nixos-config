@@ -25,5 +25,5 @@
            :text date_text)))
 
 (defvar greeting_image "/etc/nixos/dotfiles/images/greetings/clock.jpg")
-(defpoll greeting_text "If you see this text: something ain't right, fix me")
-(defpoll date_text "If you see this text: something ain't right, fix me")
+(defvar greeting_text "If you see this text: something ain't right, fix me")
+(defvar date_text "If you see this text: something ain't right, fix me")
