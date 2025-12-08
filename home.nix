@@ -81,6 +81,11 @@ programs.neovim = {
     toggleterm-nvim
   ];
   extraLuaConfig = builtins.readFile ./dotfiles/neovim/init.lua;
+  extraFiles = {
+    "lua/settings.lua".text = builtins.readFile ./dotfiles/neovim/lua/settings.lua;
+    "lua/keymaps.lua".text = builtins.readFile ./dotfiles/neovim/lua/keymaps.lua;
+    "lua/plugins.lua".text = builtins.readFile ./dotfiles/neovim/lua/plugins.lua;
+  };
 };
 
 wayland.windowManager.hyprland = {
