@@ -144,6 +144,10 @@ wayland.windowManager.hyprland = {
   xwayland.enable = true;
   systemd.enable = false;
   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  plugins = [
+    inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
+  ];
 };
 
 # ============================================

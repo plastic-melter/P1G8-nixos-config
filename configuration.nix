@@ -454,6 +454,7 @@ environment.sessionVariables = {
     name = "hyprland-plugins";
     paths = with pkgs.hyprlandPlugins; [
       hyprexpo
+      hyprtrails
     ];
   };
 };
