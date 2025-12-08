@@ -147,6 +147,7 @@ virtualisation = {
   virtualbox.host.enable = true;
 };
 
+systemd.services.vboxnet0.wantedBy = lib.mkForce []; # speed up boot
 systemd.services.libvirtd.stopIfChanged = false;
 
 networking = {
@@ -168,6 +169,7 @@ networking = {
 }; 
 
 systemd.network.wait-online.enable = false;
+systemd.services.dhcpcd.enable = false;
 systemd.services.NetworkManager-wait-online.enable = false;
 systemd.services."systemd-networkd-wait-online".enable = false;
 
