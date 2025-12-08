@@ -13,6 +13,7 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.opt.ignorecase = true
+vim.opt.scroll = 10;
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true

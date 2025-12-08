@@ -49,6 +49,8 @@ require('neoscroll').setup({
   stop_eof = true,
   respect_scrolloff = false,
   cursor_scrolls_alone = true,
+  easing_function = "quadratic",
+  performance_mode = false;
 })
 
 -- Toggleterm configuration

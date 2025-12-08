@@ -11,3 +11,7 @@ vim.keymap.set('n', 'O', 'O<Esc>S', { desc = 'Open line above without auto-inden
 vim.keymap.set('n', '<C-Space>', function()
   vim.fn.system('wl-copy', vim.fn.getreg('"'))
 end, { desc = 'Copy to clipboard' })
+
+-- Override mouse scroll to be less sensitive
+vim.keymap.set({'n', 'v', 'i'}, '<ScrollWheelUp>', '2<C-y>', { silent = true })
+vim.keymap.set({'n', 'v', 'i'}, '<ScrollWheelDown>', '2<C-e>', { silent = true })
