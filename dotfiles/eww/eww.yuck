@@ -24,6 +24,6 @@
            :halign "center"
            :text date_text)))
 
-(defvar greeting_image "/etc/nixos/dotfiles/images/greetings/evening.jpg")
-(defvar greeting_text "Good evening")
-(defvar date_text "Friday, December 06, 2025")
+(defvar greeting_image "/etc/nixos/dotfiles/images/greetings/clock.jpg")
+(defpoll greeting_text "If you see this text: something ain't right, fix me")
+(defpoll date_text "If you see this text: something ain't right, fix me")

@@ -21,6 +21,6 @@
            :halign "center"
            :text chime_date)))
 
-(defvar chime_image "/etc/nixos/dotfiles/images/clock.jpg")
-(defvar chime_time "12:00 PM")
-(defvar chime_date "Monday, December 06")
+(defvar chime_image "/etc/nixos/dotfiles/images/greetings/clock.jpg")
+(defpoll chime_time :interval "1s" "date '+%I:%M %p'")
+(defpoll chime_date :interval "60s" "date '+%A, %B %d'")

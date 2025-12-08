@@ -4,13 +4,13 @@ hour=$(date +%H)
 
 if [ $hour -lt 12 ]; then
   greeting="Good morning"
-  image="/etc/nixos/dotfiles/images/greetings/morning.jpg"
+  image="/etc/nixos/dotfiles/images/greetings/clock.jpg"
 elif [ $hour -lt 17 ]; then
   greeting="Good afternoon"
-  image="/etc/nixos/dotfiles/images/greetings/morning.jpg"
+  image="/etc/nixos/dotfiles/images/greetings/clock.jpg"
 else
   greeting="Good evening"
-  image="/etc/nixos/dotfiles/images/greetings/evening.jpg"
+  image="/etc/nixos/dotfiles/images/greetings/clock.jpg"
 fi
 
 date_text="$(date +'%A, %B %d, %Y')"
