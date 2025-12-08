@@ -1,0 +1,5 @@
+[mgr]
+keymap = [
+  { on = [ "q" ], run = "quit --no-cwd-file", desc = "Exit without changing directory" },
+  { on = [ "Q" ], run = "quit", desc = "Exit and change directory" },
+]
