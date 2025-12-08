@@ -443,3 +443,4 @@
     name = "Android File Transfer";
     noDisplay = true;
   };
+}
