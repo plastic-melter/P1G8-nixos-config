@@ -56,6 +56,7 @@ programs = {
 
 boot = {
   kernelPackages = pkgs.linuxPackages_latest;
+  loader.timeout = 1;
   loader.grub = {
     enable = true;
     device = "nodev";
@@ -261,7 +262,9 @@ services = {
     };
   };
   fstrim.enable = true;
-  fwupd.enable = true;
+  fwupd = {
+    enable = true;
+    systemd.services.fwupd.wantedBy = lib.mkForce []; # prevent it from slowing down boot
   tlp.enable = true;
   tlp.settings = { 
     START_CHARGE_THRESH_BAT0 = 90; 
@@ -329,6 +332,33 @@ services = {
       enable = true;
       user = "joe";
     };
+  };
+};
+
+systemd.user.services.fwupd-check = {
+  description = "Check for firmware updates";
+  script = ''
+    # Check if on wifi
+    if ${pkgs.networkmanager}/bin/nmcli -t -f TYPE,STATE device | grep -q "wifi:connected"; then
+      ${pkgs.libnotify}/bin/notify-send "Checking firmware updates..." -u low
+      ${pkgs.fwupd}/bin/fwupdmgr refresh
+      updates=$(${pkgs.fwupd}/bin/fwupdmgr get-updates 2>/dev/null)
+      if [ -n "$updates" ]; then
+        ${pkgs.libnotify}/bin/notify-send "Firmware updates available" "$updates" -u normal
+      fi
+    fi
+  '';
+  serviceConfig = {
+    Type = "oneshot";
+  };
+};
+
+systemd.user.timers.fwupd-check = {
+  description = "Check for firmware updates after boot";
+  wantedBy = [ "timers.target" ];
+  timerConfig = {
+    OnBootSec = "5min";
+    OnUnitActiveSec = "1week";
   };
 };
 
