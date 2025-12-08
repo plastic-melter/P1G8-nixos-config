@@ -7,6 +7,8 @@ vim.filetype.add({
 })
 
 -- General settings
+vim.opt.autoindent = false
+vim.opt.smartindent = false
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.cursorline = true
@@ -18,7 +20,6 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.autoindent = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true

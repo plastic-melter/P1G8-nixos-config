@@ -262,10 +262,7 @@ services = {
     };
   };
   fstrim.enable = true;
-  fwupd = {
-    enable = true;
-    systemd.services.fwupd.wantedBy = lib.mkForce []; # prevent it from slowing down boot
-  };
+  fwupd.enable = true;
   tlp.enable = true;
   tlp.settings = { 
     START_CHARGE_THRESH_BAT0 = 90; 
@@ -335,6 +332,8 @@ services = {
     };
   };
 };
+
+systemd.services.fwupd.wantedBy = lib.mkForce []; # prevent it from slowing down boot
 
 systemd.user.services.fwupd-check = {
   description = "Check for firmware updates";
