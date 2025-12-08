@@ -450,13 +450,6 @@ environment.sessionVariables = {
   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   LIBVA_DRIVER_NAME = "nvidia";
   GBM_BACKENDS_PATH = "/run/opengl-driver/lib/gbm";
-  HYPR_PLUGIN_DIR = pkgs.symlinkJoin {
-    name = "hyprland-plugins";
-    paths = with pkgs.hyprlandPlugins; [
-      hyprexpo
-      hyprtrails
-    ];
-  };
 };
 
 # ============================================
