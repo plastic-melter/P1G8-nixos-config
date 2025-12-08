@@ -1,0 +1,4 @@
+[tasks]
+image_alloc      = 536870912  # 512MB
+image_bound      = [ 50000, 50000 ]
+suppress_preload = false

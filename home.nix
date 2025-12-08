@@ -230,12 +230,10 @@ programs.zsh = {
     EDITOR = "vi";
   };
   shellAliases = {
-    games = "yazi /home/joe/Backups/Games/quick-access";
-    dotsync = "doas /etc/nixos/dotfiles/scripts/nixos-git-sync.sh";
+    y = "yazi";
     gens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     yeet = "/etc/nixos/dotfiles/scripts/yeet.sh";
     megayeet = "/etc/nixos/dotfiles/scripts/megayeet.sh";
-    elona = "wine /home/joe/Backups/Games/quick-access/elona/customgx-2.28/elonaplus2.28/elonapluscgx.exe";
     sudo = "doas";
     fetch = "fastfetch";
     sys = "doas vim /etc/nixos/configuration.nix";
@@ -245,11 +243,7 @@ programs.zsh = {
     scripts = "yazi /etc/nixos/dotfiles/scripts";
     clc = "clear";
     kms = "/etc/nixos/dotfiles/scripts/kms.sh";
-    kys = "pkill";
     notes = "vim ~/.notes.md";
-    colors = "vim /etc/nixos/dotfiles/colors";
-    lowres = "hyprctl keyword monitor eDP-1,1680x1050,0x0,1 && hyprctl keyword monitor HDMI-A-1,1920x1080,1680x0,1";
-    highres = "hyprctl keyword monitor eDP-1,2560x1600,0x0,1 && hyprctl keyword monitor HDMI-A-1,3840x2160,2560x0,1";
     homeclean = "env --chdir=/home/joe /etc/nixos/dotfiles/scripts/homeclean.sh";
   };
 };
