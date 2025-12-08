@@ -29,6 +29,7 @@ home.file = {
   ".config/scripts".source = ./dotfiles/scripts;
   ".config/wallpapers".source = ./dotfiles/wallpapers;
   ".config/nwg-drawer".source = ./dotfiles/nwg-drawer;
+  ".config/nwg-menu".source = ./dotfiles/nwg-menu;
   ".config/foot".source = ./dotfiles/foot;
   ".config/wezterm".source = ./dotfiles/wezterm;
   ".config/user-dirs.conf".text = ''
@@ -82,8 +83,8 @@ programs.neovim = {
   extraLuaConfig = ''
     vim.filetype.add({
       filename = {
-        ['config'] = 'conf',
-        ['conf'] = 'conf',
+        ['config'] = 'toml',
+        ['conf'] = 'toml',
       },
     })
     vim.cmd('colorscheme slate')
