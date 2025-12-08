@@ -133,6 +133,10 @@ swapDevices = [{device = "/swapfile"; size = 32000;}];
 
 networking = {
   hostName = "P1G8";
+  firewall = {
+    allowedTCPPorts = [ ];  # Don't expose 22000 globally
+    interfaces.wlp0s20f3.allowedTCPPorts = [ 22000 ];  # Only on WiFi interface
+  };
   useDHCP = false;
   networkmanager = {
     enable = true;
@@ -233,15 +237,6 @@ security = {
       users = [ "joe" ];
     }];
   };
-};
-
-# ============================================
-# VIRTUALISATION
-# ============================================
-
-virtualisation = {
-  libvirtd.enable = true;
-  virtualbox.host.enable = true;
 };
 
 # ============================================
@@ -480,19 +475,18 @@ users = {
   users.joe = {
     isNormalUser = true;
     extraGroups = [
-      "adbusers"
-      "audio"
-      "dialout"
-      "disk"
-      "input"
-      "libvirtd"
-      "network"
-      "plugdev"
-      "power"
-      "uinput"
-      "vboxusers"
-      "video"
-      "wheel"
+      "adbusers"	# access to android debug stuff
+      "dialout"		# access to serial ports
+      "libvirtd"	# access to libvirt VM management
+      "audio"		# access to audio devices
+      "disk"		# access to raw disk devices
+      "video"		# access to video devices
+      "power"		# access to power management
+      "plugdev"		# access to removable devices
+      "network"		# access to network interface
+      "wheel"		# access to sudo
+      "input"		# access to input devices
+      "uinput"		# access to virtual input devices
     ];
   };
 }; 

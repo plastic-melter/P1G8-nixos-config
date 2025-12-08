@@ -311,7 +311,6 @@ home.packages = with pkgs; [
   arduino-cli # CLI arduino tools
   audacious # music player
   bolt-launcher # OSRS RuneLite launcher
-  discord # electron app for discord
   firefox # the best web browser
   gimp # GNU image manipulation program
   grayjay # youtube frontend
@@ -326,7 +325,7 @@ home.packages = with pkgs; [
   spotify # music streaming
   tagainijisho # japanese dictionary
   vlc # video player
-  webcord # webkit app for discord, less proprietary
+  webcord # webkit app for discord, less insecure
   wezterm # dope-ass terminal emulator
   xfce.thunar # GUI file manager
   yazi # TUI file manager
