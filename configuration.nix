@@ -20,6 +20,7 @@ nix = {
     trusted-users = [ "root" "joe" ];
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    accept-flake-config = true;
   };
 };
 
@@ -452,7 +453,7 @@ environment.sessionVariables = {
   HYPR_PLUGIN_DIR = pkgs.symlinkJoin {
     name = "hyprland-plugins";
     paths = with pkgs.hyprlandPlugins; [
-      # Add plugins here
+      hyprexpo
     ];
   };
 };
