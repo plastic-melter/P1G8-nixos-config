@@ -145,14 +145,6 @@ networking = {
   };
   interfaces = {
     wlp0s20f3.useDHCP = true;
-    enp177s0.useDHCP = false;
-    enp177s0u1c2 = {
-      ipv4.addresses = [{
-        address = "169.254.1.1";
-        prefixLength = 16;
-      }];
-      useDHCP = false;
-    };
   };
 }; 
 
@@ -164,7 +156,10 @@ systemd.services = {
   "systemd-networkd-wait-online".enable = false;
   vboxnet0.wantedBy = lib.mkForce [];
   libvirtd.stopIfChanged = false;
-  fwupd.wantedBy = lib.mkForce []; # Prevent boot slowdown
+  fwupd = {
+    wantedBy = lib.mkForce []; # Prevent boot slowdown
+    fwupd-refresh.wantedBy = lib.mkForce
+  };
 };
 
 # ============================================
