@@ -265,6 +265,7 @@ services = {
   fwupd = {
     enable = true;
     systemd.services.fwupd.wantedBy = lib.mkForce []; # prevent it from slowing down boot
+  };
   tlp.enable = true;
   tlp.settings = { 
     START_CHARGE_THRESH_BAT0 = 90; 
