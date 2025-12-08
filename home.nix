@@ -231,6 +231,7 @@ programs.zsh = {
   };
   shellAliases = {
     y = "yazi";
+    ranger = "yazi";
     gens = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     yeet = "/etc/nixos/dotfiles/scripts/yeet.sh";
     megayeet = "/etc/nixos/dotfiles/scripts/megayeet.sh";
