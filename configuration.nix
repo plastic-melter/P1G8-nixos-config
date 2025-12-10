@@ -293,23 +293,13 @@ services = {
     wireplumber = {
       enable = true;
       configPackages = [
-        (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/51-limit-volume.conf" ''
-          monitor.alsa.rules = [
-            {
-              matches = [
-                {
-                  node.name = "~alsa_output.*"
-                }
-              ]
-              actions = {
-                update-props = {
-                  api.alsa.soft-mixer = true
-                  api.alsa.volume-method = "softvol"
-                  audio.volume.max = 1.25
-                }
-              }
-            }
-          ]
+        (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+          bluez_monitor.properties = {
+            ["bluez5.enable-sbc-xq"] = true,
+            ["bluez5.enable-msbc"] = true,
+            ["bluez5.enable-hw-volume"] = true,
+            ["bluez5.headset-roles"] = "[]"
+          }
         '')
       ];
     };
