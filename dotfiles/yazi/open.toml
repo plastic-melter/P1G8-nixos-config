@@ -1,0 +1,8 @@
+[opener]
+default = { run = 'xdg-open "$@"', orphan = true, for = "unix" }
+
+[open]
+rules = [
+  { mime = "video/*", use = "default" },
+  { mime = "audio/*", use = "default" },
+]

@@ -99,6 +99,55 @@
     mimeType = [ "image/png" "image/jpeg" "image/jpg" "image/gif" "image/webp" ];
   };
 
+  vlc = {
+    name = "VLC Media Player";
+    exec = "vlc %U";
+    terminal = false;
+    mimeType = [
+      "video/mp4"
+      "video/x-matroska"
+      "video/webm"
+      "video/avi"
+      "video/x-msvideo"
+      "video/quicktime"
+      "audio/mpeg"
+      "audio/x-wav"
+    ];
+  };
+
+  gimp = {
+    name = "GIMP";
+    exec = "gimp %U";
+    terminal = false;
+    mimeType = [
+      "image/png"
+      "image/jpeg"
+      "image/gif"
+      "image/bmp"
+      "image/webp"
+      "image/tiff"
+    ];
+  };
+
+  mpv = {
+    name = "mpv Media Player";
+    exec = "mpv %U";
+    terminal = false;
+    mimeType = [
+      "video/mp4"
+      "video/x-matroska"
+      "video/webm"
+      "video/avi"
+      "video/x-msvideo"
+      "video/quicktime"
+      "video/mpeg"
+      "audio/mpeg"
+      "audio/x-wav"
+      "audio/flac"
+      "audio/ogg"
+    ];
+  };
+
   # ============================================
   # GAMES - TOUHOU
   # ============================================

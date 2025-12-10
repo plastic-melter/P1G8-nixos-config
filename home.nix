@@ -301,6 +301,29 @@ qt = {
 xdg.desktopEntries = import ./dotfiles/desktop-entries.nix;
 
 # ============================================
+# DEFAULT APPS
+# ============================================
+
+xdg.mimeApps = {
+  enable = true;
+  defaultApplications = {
+    # Images → imv
+    "image/png"  = [ "imv.desktop" ];
+    "image/jpeg" = [ "imv.desktop" ];
+    "image/jpg"  = [ "imv.desktop" ];
+    "image/webp" = [ "imv.desktop" ];
+    "image/gif"  = [ "imv.desktop" ];
+    # Video → VLC
+    "video/mp4"        = [ "vlc.desktop" ];
+    "video/x-matroska" = [ "vlc.desktop" ]; # mkv
+    "video/x-msvideo"  = [ "vlc.desktop" ]; # avi
+    "video/webm"       = [ "vlc.desktop" ];
+    "video/quicktime"  = [ "vlc.desktop" ];
+  };
+};
+
+
+# ============================================
 # HOME PACKAGES
 # ============================================
 
@@ -317,6 +340,7 @@ home.packages = with pkgs; [
   kdePackages.kcolorchooser # hex color tool GUI
   kdePackages.kdenlive # GUI video editor
   libreoffice-fresh # office app suite
+  mpv # simple video player
   obsidian # cross-platform notes program
   platformio # arduino TUI + utils
   prusa-slicer # 3DP slicer
